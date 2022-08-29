@@ -3,4 +3,6 @@ class List < ApplicationRecord
   has_many :catalogs
   has_many :videos, through: :catalogs
   has_many :solos, through: :videos
+
+  validates :name, presence: true
 end

@@ -10,4 +10,6 @@ class User < ApplicationRecord
   has_many :solos, through: :videos
   has_many :podiums
   has_many :achievements, through: :podiums
+
+  validates :first_name, :last_name, :email, :username, presence: true
 end
