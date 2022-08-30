@@ -28,4 +28,7 @@ class VideosController < ApplicationController
       @videos << video_final if video["id"]["kind"] == "youtube#video"
     end
   end
+
+  def show
+  end
 end
