@@ -1,2 +1,23 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<header class="header">
+	<div class="text-box">
+		<h1 class="heading-primary">
+			<span class="heading-primary-main">The Riff Along</span>
+			<span class="heading-primary-sub effect-style">Looping forever</span>
+		</h1>
+
+
+     <%= form_with url: videos_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control rounded-btn-nav",
+        placeholder: "Find a song"
+      %>
+    <% end %>
+      <%= submit_tag "Search", class: "btn btn-dark rounded-btn-nav m-4" %>
+	</div>
+</header>
+
+
+
+
+

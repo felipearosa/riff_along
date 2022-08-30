@@ -14,3 +14,10 @@ $headers-font: "Nunito", "Helvetica", "sans-serif";
 //        font-url('FontFile.ttf') format('truetype')
 // }
 // $my-font: "Font Name";
+
+@font-face {
+  font-family: 'Nissma';
+  src: url('Nissma-Regular.ttf');
+  font-style: regular;
+  font-weight: 500;
+}
