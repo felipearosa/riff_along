@@ -1,8 +1,8 @@
 class SolosController < ApplicationController
-  def new
-    @solo = Solo.new
-    # authorize @solo
-  end
+  # def new
+  #   @solo = Solo.new
+  #   # authorize @solo
+  # end
 
   def create
     @solo = Solo.new(params[:solo])
