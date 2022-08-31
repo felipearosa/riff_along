@@ -11,5 +11,8 @@ class User < ApplicationRecord
   has_many :podia
   has_many :achievements, through: :podia
 
-  validates :first_name, :last_name, :email, :username, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :email, presence: true
+ 
 end
