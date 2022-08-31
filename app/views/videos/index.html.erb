@@ -1,6 +1,6 @@
 <div class="container">
   <div class="index-card">
-
+    <h1><%= (params[:query]).upcase %> VIDEOS</h1>
     <% if params[:query].nil?  %>
       <h1>Don't know where to start? Go with Jimi</h1>
     <% end %>
@@ -10,8 +10,8 @@
         <div class="card-trip m-3">
           <img src="<%= video[:image_url_high] %>" />
           <div class="card-trip-infos">
-             
-              <h2><%= link_to video[:title], video_path(video[:video_id]) %></h2>
+
+            <h2><%= link_to video[:title], video_path(video[:video_id]) %></h2>
           </div>
         </div>
 
