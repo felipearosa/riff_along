@@ -8,6 +8,7 @@
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 17px;
+  text-align: center;
 }
 
 .card-trip > img {
@@ -41,6 +42,11 @@
 
 .card-trip-infos a {
   color: #580090;
+  text-decoration: none;
+}
+
+.card-trip-infos a:hover {
+  color: #9d00ff;;
 }
 
 .card-trip-infos .card-trip-user {
