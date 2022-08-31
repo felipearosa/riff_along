@@ -3,11 +3,10 @@ import YouTubePlayer from 'youtube-player';
 
 // Connects to data-controller="video"
 export default class extends Controller {
-  static targets = [ "start", "stop", "list", "row", "start", "end" ]
+  static targets = [ "start", "stop", "list", "row" ]
   static values = {
     slug: String
   }
-
 
   connect() {
     console.log(this.startTarget);
@@ -36,18 +35,36 @@ export default class extends Controller {
                 <td>(mastered_img)</td>
                 <td>${this.startTime} - ${this.endTime}</td>
                 <td class="btn btn-primary" data-video-target="row"  data-video-start="${this.exactStart}" data-video-end="${this.exactEnd}" data-action="click->video#playSolo">Go to Solo</td>
+                <td class="btn btn-primary" data-video-start="${this.exactStart}" data-video-end="${this.exactEnd}"    data-action="click->video#testLoop">Go to Loop</td>
 
             `;
       this.listTarget.appendChild(row);
     });
   }
 
-  //
 
+  testLoop(event){
+    const element = event.target;
+    this.player.loadVideoById({'videoId': this.slugValue,
+          'startSeconds': element.dataset.videoStart,
+          'endSeconds': element.dataset.videoEnd,
+          'suggestedQuality': 'large'});
+
+
+    this.player.on('stateChange', (event) => {
+      this.player.getPlayerState().then(data => {
+        if (data === 0 ) {
+          this.player.loadVideoById({'videoId': this.slugValue,
+          'startSeconds': element.dataset.videoStart,
+          'endSeconds': element.dataset.videoEnd,
+          'suggestedQuality': 'large'});
+        }
+      })
+    });
+  }
 
   playSolo(event){
     const element = event.target
-    console.log(element.dataset.videoStart);
     this.player.loadVideoById({'videoId': this.slugValue,
     'startSeconds': element.dataset.videoStart,
     'endSeconds': element.dataset.videoEnd,
