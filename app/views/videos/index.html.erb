@@ -1,6 +1,6 @@
 <div class="container">
   <div class="index-card">
-    <h1><%= (params[:query]).upcase %> VIDEOS</h1>
+    <h1><%= params[:query] %> VIDEOS</h1>
     <% if params[:query].nil?  %>
       <h1>Don't know where to start? Go with Jimi</h1>
     <% end %>
