@@ -1,8 +1,10 @@
 <div class="container">
   <div class="index-card">
-    <h1><%= params[:query] %> VIDEOS</h1>
-    <% if params[:query].nil?  %>
+
+    <% if params[:query].nil? || params[:query] == "" %>
       <h1>Don't know where to start? Go with Jimi</h1>
+    <% elsif %>
+      <h1><%= params[:query] %> videos</h1>
     <% end %>
     <div class="cards">
       <% @videos.each do |video| %>
