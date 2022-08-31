@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: [:show, :edit, :update, :destroy]
+  before_action :set_list, only: %i[show edit update destroy]
+  
 
   def index
     @lists = List.all
@@ -44,5 +45,4 @@ class ListsController < ApplicationController
   def set_list
     @list = List.find(params[:id])
   end
-
 end
