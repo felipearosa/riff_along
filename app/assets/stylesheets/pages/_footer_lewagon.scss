@@ -3,9 +3,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100px;
+  height: 50px;
   padding: 0px 50px;
   color: rgb(255, 255, 255);
+  margin-top: auto;
 }
 .footer-links {
   display: flex;
@@ -20,7 +21,8 @@
 }
 .footer-links a:hover {
   opacity: 2;
+  color: #580090;
 }
-.footer .fa-guitar {
+.footer .fa-music {
   color: #580090;
 }

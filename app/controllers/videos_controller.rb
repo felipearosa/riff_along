@@ -2,6 +2,8 @@ require 'open-uri'
 require 'json'
 
 class VideosController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[index show]
+
   def index
     @videos = []
     if params[:query].present?
@@ -14,7 +16,7 @@ class VideosController < ApplicationController
   end
 
   def show
-    @params = 'IZBlqcbpmxY'
+    @params = params[:id]
   end
 
   private
@@ -32,6 +34,4 @@ class VideosController < ApplicationController
       @videos << video_final if video["id"]["kind"] == "youtube#video"
     end
   end
-
-
 end

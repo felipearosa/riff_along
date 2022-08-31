@@ -1,4 +1,4 @@
 class Achievement < ApplicationRecord
-  has_many :podiums
-  has_many :users, through: :podiums
+  has_many :podia
+  has_many :users, through: :podia
 end
