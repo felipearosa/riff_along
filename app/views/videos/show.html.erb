@@ -4,9 +4,9 @@
     <button type="button" class="btn btn-dark btn-lg btn-block">Start</button>
     <button type="button" class="btn btn-dark btn-lg btn-block">Stop</button>
   </div>
-
+p
   <%# DIV PARA O IFRAME DO YOUTUBE %>
-  <div data-controller="video">
+  <div data-controller="video" data-slug="<%= @params %>" id="video-container">
     <div id="player"></div>
   </div>
 </div>

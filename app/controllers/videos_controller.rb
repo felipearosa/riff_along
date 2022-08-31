@@ -14,7 +14,7 @@ class VideosController < ApplicationController
   end
 
   def show
-    @params = 'IZBlqcbpmxY'
+    @params = params[:id]
   end
 
   private
