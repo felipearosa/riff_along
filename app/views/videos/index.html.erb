@@ -4,5 +4,6 @@
 <% @videos.each do |video| %>
   <img src="<%= video[:image_url_high] %>" alt="">
   <%= video[:title] %>
+  <%= link_to "Go to Video", video_path(video[:video_id]) %>
   <%= video[:video_id] %><br><br>
 <% end %>
