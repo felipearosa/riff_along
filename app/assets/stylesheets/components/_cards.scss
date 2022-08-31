@@ -1,0 +1,167 @@
+.container h1 {
+  color: #5d0595;
+  font-weight: bold;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 16px;
+  margin-bottom: 20px;
+}
+
+// Smallest device
+@media (min-width: 100px) and (max-width: 575px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+
+.card-folder {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.card-folder > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-folder h2 {
+  color: #5d0595;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-folder .card-folder-infos {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+
+.card-folder-infos .card-folder-user {
+  position: absolute;
+  right: 16px;
+  top: -20px;
+  width: 40px;
+}
+
+
+
+//Achievements folders
+
+.achievements-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 80px;
+  margin-bottom: 20px;
+  border-bottom: 5px;
+}
+
+// Smallest device
+@media (min-width: 100px) and (max-width: 575px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .achievements-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .achievements-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .achievements-cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .achievements-cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+
+.achievements-card-folder {
+  overflow: hidden;
+  background: #5d0495;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  width: 100%;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+.achievements-card-folder > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.achievements-card-folder h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.achievements-card-folder .achievements-card-folder-infos {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  // margin-bottom: 20px;
+  // border-bottom: 5px;
+}
+
+.achievements-card-folder-infos .achievements-card-folder-user {
+  position: absolute;
+  right: 16px;
+  top: -20px;
+  width: 40px;
+}

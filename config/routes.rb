@@ -8,4 +8,6 @@ Rails.application.routes.draw do
 
   resources :videos
   resources :lists
+
+  resources :users, only: [:show]
 end
