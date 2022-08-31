@@ -133,6 +133,8 @@
   width: 100%;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
 }
 
 .achievements-card-folder > img {
