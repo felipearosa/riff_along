@@ -1,9 +1,9 @@
 .index-card h1 {
   color: #580090;
-  margin-top: 15px;
+  margin: 40px 0px;
 }
 
-.card-trip {
+.card-trip-index {
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -11,28 +11,29 @@
   text-align: center;
 }
 
-.card-trip > img {
+.card-trip-index > img {
   height: 200px;
   width: 100%;
   object-fit: cover;
 }
 
-.card-trip h2 {
+.card-trip-index h2 {
   font-size: 16px;
   font-weight: bold;
   margin: 0;
   color: #580090;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  margin: 15px 0px;
 }
 
-.card-trip p {
+.card-trip-index p {
   font-size: 12px;
   opacity: .7;
   margin: 0;
 }
 
 
-.card-trip .card-trip-infos {
+.card-trip-index .card-trip-infos {
   padding: 16px;
   display: flex;
   justify-content: space-between;
@@ -40,16 +41,16 @@
   position: relative;
 }
 
-.card-trip-infos a {
+.card-trip-infos-index a {
   color: #580090;
   text-decoration: none;
 }
 
-.card-trip-infos a:hover {
+.card-trip-infos-index a:hover {
   color: #9d00ff;;
 }
 
-.card-trip-infos .card-trip-user {
+.card-trip-infos-index .card-trip-user {
   position: absolute;
   right: 16px;
   top: -20px;
@@ -58,7 +59,7 @@
 
 
 
-.cards {
+.cards-index {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 16px;
@@ -66,35 +67,35 @@
 
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
-  .cards {
+  .cards-index {
     grid-template-columns: 1fr;
   }
 }
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
-  .cards {
+  .cards-index {
     grid-template-columns: 1fr;
   }
 }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-  .cards {
+  .cards-index {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
-  .cards {
+  .cards-index {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
-  .cards {
+  .cards-index {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
