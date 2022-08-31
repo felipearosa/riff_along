@@ -1,1 +1,8 @@
-<h1>hey</h1>
+<% if params[:query].nil?  %>
+  <h1>Don't know where to start? Go with Jimi</h1>
+<% end %>
+<% @videos.each do |video| %>
+  <img src="<%= video[:image_url_high] %>" alt="">
+  <%= video[:title] %>
+  <%= video[:video_id] %><br><br>
+<% end %>

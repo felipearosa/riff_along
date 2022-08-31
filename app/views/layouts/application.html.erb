@@ -5,15 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+     <link rel = "icon" href ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTE-sdaYX8npGKK0jIS0ZYIji1ZU2ctfep8BSII1c&s" type = "image/x-icon">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body><%= render "shared/navbar" %>
-<%= render "shared/flashes" %>
+  <body>
+
+  <%= render "shared/navbar" %>
+
+  <%= render "shared/flashes" %>
 
     <%= yield %>
     <%= render "shared/footer" %>
+    <script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/113ca41c/www-widgetapi.vflset/www-widgetapi.js" async=""></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
   </body>
 </html>
