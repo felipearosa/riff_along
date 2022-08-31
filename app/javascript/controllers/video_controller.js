@@ -25,6 +25,14 @@ export default class extends Controller {
     });
   }
 
+  markStart(){
+    console.log('working');
+    this.player.getCurrentTime()
+    .then(data => {
+      console.log(data)
+    });
+  }
+
 
   // onPlayerStateChange = (event) => {
   //   console.log('ok onPlayerStateChange')
