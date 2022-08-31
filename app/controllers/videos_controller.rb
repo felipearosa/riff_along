@@ -13,6 +13,10 @@ class VideosController < ApplicationController
     loop_videos_search(url)
   end
 
+  def show
+    @params = 'IZBlqcbpmxY'
+  end
+
   private
 
   def loop_videos_search(url)
@@ -29,6 +33,5 @@ class VideosController < ApplicationController
     end
   end
 
-  def show
-  end
+
 end
