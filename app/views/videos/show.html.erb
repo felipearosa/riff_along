@@ -1,12 +1,11 @@
-<div class="container-md">
+<div class="container-md"  data-controller="video" data-video-slug-value="<%= @params %>">
   <div class="d-flex">
     <h1>VIDEO</h1>
-    <button type="button" class="btn btn-dark btn-lg btn-block">Start</button>
-    <button type="button" class="btn btn-dark btn-lg btn-block">Stop</button>
+    <button type="button" class="btn btn-dark btn-lg btn-block" data-video-target="start" data-action="click->video#markStart">Start</button>
+    <button type="button" class="btn btn-dark btn-lg btn-block" data-video-target="stop" data-action="click->video#markStop>Stop</button>
   </div>
-p
   <%# DIV PARA O IFRAME DO YOUTUBE %>
-  <div data-controller="video" data-slug="<%= @params %>" id="video-container">
+  <div id="video-container">
     <div id="player"></div>
   </div>
 </div>
