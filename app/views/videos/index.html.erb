@@ -6,12 +6,12 @@
     <% elsif %>
       <h1><%= params[:query] %> videos</h1>
     <% end %>
-    <div class="cards">
+    <div class="cards-index">
       <% @videos.each do |video| %>
 
-        <div class="card-trip m-3">
+        <div class="card-trip-index m-3">
           <img src="<%= video[:image_url_high] %>" />
-          <div class="card-trip-infos">
+          <div class="card-trip-infos-index">
 
             <h2><%= link_to video[:title], video_path(video[:video_id]) %></h2>
           </div>

@@ -16,6 +16,13 @@ body {
 }
 
 
+.fa-paper-plane, .fa-download, .fa-share-nodes {
+  color: #580090;
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+
 .header {
   height: 100vh;
   background-image:
@@ -169,7 +176,7 @@ body {
   background: #000;
   display: flex;
   padding: 100px;
-  height: 100vh;
+  height: 60vh;
   align-items: center;
   justify-content: space-between;
 }
@@ -206,7 +213,7 @@ body {
   font-size: 16px;
   line-height: 1.7;
   color: rgb(0, 0, 0);
-  height: 100vh;
+  height: 60vh;
   align-items: center;
   justify-content: center;
 
