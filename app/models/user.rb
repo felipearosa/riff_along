@@ -8,8 +8,8 @@ class User < ApplicationRecord
   has_many :catalogs, through: :lists
   has_many :videos, through: :catalogs
   has_many :solos, through: :videos
-  has_many :podiums
-  has_many :achievements, through: :podiums
+  has_many :podia
+  has_many :achievements, through: :podia
 
   validates :first_name, :last_name, :email, :username, presence: true
 end
