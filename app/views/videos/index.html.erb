@@ -1,9 +1,21 @@
-<% if params[:query].nil?  %>
-  <h1>Don't know where to start? Go with Jimi</h1>
-<% end %>
-<% @videos.each do |video| %>
-  <img src="<%= video[:image_url_high] %>" alt="">
-  <%= video[:title] %>
-  <%= link_to "Go to Video", video_path(video[:video_id]) %>
-  <%= video[:video_id] %><br><br>
-<% end %>
+<div class="container">
+  <div class="index-card">
+
+    <% if params[:query].nil?  %>
+      <h1>Don't know where to start? Go with Jimi</h1>
+    <% end %>
+    <div class="cards">
+      <% @videos.each do |video| %>
+
+        <div class="card-trip m-3">
+          <img src="<%= video[:image_url_high] %>" />
+          <div class="card-trip-infos">
+             
+              <h2><%= link_to video[:title], video_path(video[:video_id]) %></h2>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
