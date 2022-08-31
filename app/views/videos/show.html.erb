@@ -2,10 +2,21 @@
   <div class="d-flex">
     <h1>VIDEO</h1>
     <button type="button" class="btn btn-dark btn-lg btn-block" data-video-target="start" data-action="click->video#markStart">Start</button>
-    <button type="button" class="btn btn-dark btn-lg btn-block" data-video-target="stop" data-action="click->video#markStop>Stop</button>
+    <button type="button" class="btn btn-dark btn-lg btn-block" data-video-target="stop" data-action="click->video#markStop">Stop</button>
   </div>
   <%# DIV PARA O IFRAME DO YOUTUBE %>
   <div id="video-container">
     <div id="player"></div>
   </div>
+  <table class="w-100" style="color:#000000">
+            <thead>
+                <tr>
+                    <th>Mastered</th>
+                    <th>Time</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="solo-list" data-video-target="list" ></tbody>
+        </table>
+
 </div>
