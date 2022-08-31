@@ -6,9 +6,9 @@ import "bootstrap"
 
 console.log('ok')
 
-
-var done = false;
-var player;
+const slug = document.querySelector("#video-container").dataset.slug
+let done = false;
+let player;
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     height: '390',
@@ -39,7 +39,7 @@ function onYouTubeIframeAPIReady() {
 
 function onPlayerReady(event) {
   //event.target.playVideo();
-  event.target.loadVideoById('IZBlqcbpmxY', 0.1, "large")
+  event.target.loadVideoById(slug , 0.1, "large")
 
 };
 
