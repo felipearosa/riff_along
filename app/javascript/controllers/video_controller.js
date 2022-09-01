@@ -56,8 +56,8 @@ export default class extends Controller {
         this.startTime = "Unloaded"
       }
       row.innerHTML = `
-                <td>(mastered_img)</td>
-                <td>${this.startTime} - ${this.endTime}</td>
+                <td class="container-td"><div>(mastered_img)</div></td>
+                <td class="container-td"><div>${this.startTime} - ${this.endTime}</div></td>
             `;
       this.listTarget.appendChild(row);
     });

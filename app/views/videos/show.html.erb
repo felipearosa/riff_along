@@ -1,32 +1,39 @@
 <div class="container-md"  data-controller="video" data-video-slug-value="<%= @params %>">
-      <h1>VIDEO</h1>
-
-
-
-
-  <%# DIV PARA O IFRAME DO YOUTUBE %>
-  <div id="video-container">
-    <div id="player"></div>
-    <div class="d-flex">
-      <div class="btn btn-dark btn-lg btn-block disabled" data-video-target="start" data-action="click->video#markStart">Start Recording</div>
-      <div type="button" class="btn btn-dark btn-lg btn-block disabled" data-video-target="stop" data-action="click->video#markStop">Stop Recording</div>
+  <h1>VIDEO</h1>
+  <div class="d-flex">
+    <div id="video-container">
+    <%# DIV PARA O IFRAME DO YOUTUBE %>
+      <div id="player"></div>
+      <div class="d-flex">
+        <div class="btn btn-dark btn-lg btn-block disabled" data-video-target="start" data-action="click->video#markStart">Start Recording</div>
+        <div type="button" class="btn btn-dark btn-lg btn-block disabled" data-video-target="stop" data-action="click->video#markStop">Stop Recording</div>
+      </div>
+      <div data-video-target="message"></div>
+    <div id="control" data-video-target="control">
     </div>
-    <div data-video-target="message"></div>
-  </div>
+    </div>
 
-   <div id="control" data-video-target="control">
+  <div class="w-100">
+      <table class="w-100" style="color:#000000">
+          <thead>
+              <tr>
+                  <th>Mastered</th>
+                  <th>Time</th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody id="solo-list" data-video-target="list"></tbody>
+      </table>
+</div>
+<%# <table>
+    <tr>
+        <td class="container-td">
+            This is a long line of text designed not to wrap
+                 when the container becomes too small.
+        </td>
+    </tr>
+</table> %>
   </div>
-
-  <table class="w-100" style="color:#000000">
-      <thead>
-          <tr>
-              <th>Mastered</th>
-              <th>Time</th>
-              <th></th>
-          </tr>
-      </thead>
-      <tbody id="solo-list" data-video-target="list"></tbody>
-  </table>
 
 
 
