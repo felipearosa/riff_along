@@ -6,41 +6,32 @@
     <%# <span class="heading-primary-sub effect-style">Master your song</span> %>
     <h2 class="heading-primary span loader"><span class="m">M</span><span class="m">A</span><span class="m">S</span><span class="m">T</span><span class="m">E</span><span class="m">R</span><span class="m">&nbsp;</span><span class="m">Y</span><span class="m">O</span><span class="m">U</span><span class="m">R</span><span class="m">&nbsp;</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">G</span></h2>
 
-    <%= form_with url: videos_path, method: :get, class: "d-flex" do %>
+    <%= form_with url: videos_path, method: :get do %>
       <%= text_field_tag :query,
         params[:query],
         class: "form-control rounded-btn-nav",
         placeholder: "Find a song"
       %>
+      <%= submit_tag "Search", class: "btn btn-dark rounded-btn-nav m-4" %>
     <% end %>
-    <%= submit_tag "Search", class: "btn btn-dark rounded-btn-nav m-4" %>
   </div>
 </header>
 
-<div class="home-h2">
-  <div class="home-text container">
-    <div class="text-title mb-5">
-      <h2>It’s easy to practice!</h2>
-    </div>
-    <div class="text-info mb-5">
-      <h5>Search for your favorite song, find the passage you want to play and have fun!</h5>
-    </div>
-    <div class="text-list">
-      <ul>
-        <li>Click “Start” to start the looping.</li>
-        <li>Click “Stop” to set the limit.</li>
-        <li>Save your songs for later.</li>
-      </ul>
-    </div>
-
+<div class="demo-function d-flex">
+  <div class="demo-items">
+    <h2>It’s easy to practice!</h2>
+    <h3>Search for your favorite song, find the passage you want to play and have fun!</h3>
+    <ul>
+      <li>Click “Start” to start the looping.</li>
+      <li>Click “Stop” to set the limit.</li>
+      <li>Save your songs for later.</li>
+    </ul>
   </div>
-  <div>
-    <img src="<%= image_path("notebook.png") %>" alt="notebook" class="notebook-image" >
-  </div>
+  <img src="<%= image_path("notebook.png") %>" alt="notebook">
 </div>
 
-<div class="mt-3" id="">
-  <div class="center-page">
+<div class="mt-3">
+  <div class="container center-page">
     <h2 class="">Save your solos and share with your friends</h2>
     <div class="page-items">
       <div class="page-item">
