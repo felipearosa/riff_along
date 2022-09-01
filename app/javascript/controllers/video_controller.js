@@ -3,7 +3,7 @@ import YouTubePlayer from 'youtube-player';
 
 // Connects to data-controller="video"
 export default class extends Controller {
-  static targets = [ "start", "stop", "list", "row" ]
+  static targets = [ "start", "stop", "list", "row", "control", "message" ]
   static values = {
     slug: String
   }
@@ -14,6 +14,15 @@ export default class extends Controller {
     this.player.loadVideoById(this.slugValue);
     this.player.playVideo();
     console.log('sworking2');
+    this.recording == false;
+
+    this.player.on('stateChange', (event) => {
+      this.player.getPlayerState().then(data => {
+        if (data === 1 && !this.recording) {
+          this.startTarget.classList.remove('disabled')
+        }
+      })
+    });
   }
 
   markStart(){
@@ -22,6 +31,10 @@ export default class extends Controller {
       this.exactStart = data
       this.startTime = this.#turnSecIntoMin(data);
     });
+    this.recording = true;
+    this.stopTarget.classList.remove('disabled');
+    this.startTarget.classList.add('disabled');
+    this.messageTarget.innerHTML = `<p>Recording your solo...</p>`
   }
 
   markStop(){
@@ -29,27 +42,36 @@ export default class extends Controller {
     .then(data => {
       this.exactEnd = data
       this.endTime = this.#turnSecIntoMin(data);
-      const row = document.createElement('tr');
-      row.innerHTML = `
-                <td>(mastered_img)</td>
-                <td>${this.startTime} - ${this.endTime}</td>
-                <td class="btn btn-primary" data-video-target="row"  data-video-start="${this.exactStart}" data-video-end="${this.exactEnd}" data-action="click->video#playSolo">Go to Solo</td>
-                <td class="btn btn-primary disabled" data-video-start="${this.exactStart}" data-video-end="${this.exactEnd}"    data-action="click->video#loop">Go to Loop</td>
 
+
+      const row = document.createElement('tr');
+      row.dataset.action = "click->video#setRowActive";
+      row.dataset.videoTarget = "row";
+      row.dataset.videoStart = this.exactStart;
+      row.dataset.videoEnd = this.exactEnd;
+      if (this.startTime === 'NaN:NaN') {
+        this.startTime = "Unloaded"
+      }
+      if (this.endTime === 'NaN:NaN') {
+        this.startTime = "Unloaded"
+      }
+      row.innerHTML = `
+                <td class="container-td"><div>(mastered_img)</div></td>
+                <td class="container-td"><div>${this.startTime} - ${this.endTime}</div></td>
             `;
       this.listTarget.appendChild(row);
     });
+    this.recording = false;
+    this.stopTarget.classList.add('disabled');
+    this.startTarget.classList.remove('disabled');
+    this.#messageSucess();
   }
 
   playSolo(event){
     const element = event.target;
-    this.player.loadVideoById({'videoId': this.slugValue,
-    'startSeconds': element.dataset.videoStart,
-    'endSeconds': element.dataset.videoEnd,
-    'suggestedQuality': 'large'});
-
-    element.nextElementSibling.classList.remove('disabled')
-    this.#checkLoopActive(element.nextElementSibling)
+    this.#loadSolo(element)
+    element.nextElementSibling.classList.remove('disabled');
+    this.#checkLoopActive(element.nextElementSibling);
   }
 
   loop(event){
@@ -57,6 +79,40 @@ export default class extends Controller {
     element.classList.toggle('loop-active');
     // console.log(element.className.includes("loop-active"))
     this.#checkLoopActive(element);
+  }
+
+
+  setRowActive(event){
+    this.controlTarget.innerHTML = ``;
+
+    const element = event.target;
+    this.rowTargets.forEach((row) => {
+      row.classList.remove('line-active');
+    });
+    let row = element.closest('tr');
+
+    this.#loadSolo(row)
+
+    row.classList.add('line-active');
+    console.log(row.dataset.videoStart);
+
+    this.controlTarget.innerHTML = `
+    <div class="d-flex justify-content-between">
+      <button type="button" class="btn btn-success btn-lg btn-block"  data-video-start="${row.dataset.videoStart}" data-video-end="${row.dataset.videoEnd}" data-action="click->video#playSolo">Start Over</button>
+
+      <button type="button" class="btn btn-info btn-lg btn-block"  data-video-start="${row.dataset.videoStart}" data-video-end="${row.dataset.videoEnd}" data-action="click->video#loop">Loop</button>
+    </div>
+    `
+
+    this.#checkLoopActive(row);
+  }
+
+
+  #loadSolo(element){
+    this.player.loadVideoById({'videoId': this.slugValue,
+    'startSeconds': element.dataset.videoStart,
+    'endSeconds': element.dataset.videoEnd,
+    'suggestedQuality': 'large'});
   }
 
   #checkLoopActive(element){
@@ -83,6 +139,13 @@ export default class extends Controller {
   }
 
 
+  #messageSucess(){
+    this.messageTarget.innerHTML = `<p>Rock on! 🎸</p>`
+    setTimeout(() => {
+      this.messageTarget.innerHTML = ''
+    }, 3000);
+  }
+
   #turnSecIntoMin(seconds){
     let startTime
     if(seconds <60){
@@ -108,49 +171,4 @@ export default class extends Controller {
 
     return startTime
   }
-
-
-  // onPlayerStateChange = (event) => {
-  //   console.log('ok onPlayerStateChange')
-  //   if (event.data == YT.PlayerState.PLAYING && !this.done) {
-  //     //setTimeout(stopVideo, 6000);
-  //     //done = true;
-  //   }
-  // }
-
-  // stopVideo = () => {
-  //   console.log('ok stopVideo')
-  //   this.player.stopVideo();
-  // }
-
-
-
-  // onPlayerReady = (event) => {
-  //   console.log('ok onPlayerReady')
-  //   //event.target.playVideo();
-  //   event.target.loadVideoById(slug , 0.1, "large")
-  // };
-
-  // onYouTubeIframeAPIReady = () => {
-  //   console.log('ok onYouTubeIframeAPIReady')
-  //   this.player = YouTubePlayer('video', {
-  //     videoId: 'M7lc1UVf-VE'
-  //   });
-
-
-    // this.player = new YT.Player('player', {
-    //   height: '390',
-    //   width: '640',
-    //   videoId: '',
-    //   playerVars: {
-    //     'playsinline': 1
-    //   },
-    //   events: {
-    //     'onReady': (event) => this.onPlayerReady(event),
-    //     'onStateChange': (event) => this.onPlayerStateChange(event)
-    //   }
-    // });
-  //}
-
-
 }
