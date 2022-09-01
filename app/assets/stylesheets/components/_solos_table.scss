@@ -1,3 +1,40 @@
 .loop-active{
   background-color: #ff0000;
 }
+
+.loop-active:hover{
+  background-color: #f35252;
+}
+
+.loop-active:focus{
+  background-color: #f35252;
+}
+
+
+.line-active{
+  background-color: #00ff00;
+}
+
+
+#video-container div p {
+  color: #000000;
+}
+
+
+table {
+  min-height: 10px;
+}
+
+tr {
+  height:20px
+}
+
+td.container-td > div {
+  width: 100%;
+  height: 100%;
+  overflow:hidden;
+}
+
+td.container-td {
+  height: 10px;
+}
