@@ -1,5 +1,13 @@
 .navbar-lewagon {
   justify-content: space-between;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  top: 0;
+  height: 72px;
+}
+
+.navbar-bg {
   background: rgb(0, 0, 0);
 }
 
@@ -12,8 +20,13 @@
 }
 
 .form-nav{
-  border-radius: 15px 0 0 15px;
+  border-radius: 50px;
   padding: 10px 40px;
+  width: 600px;
+}
+
+.form-control {
+  padding: 4px 25px;
 }
 
 .btn-form-nav{
@@ -22,7 +35,37 @@
 }
 
 .rounded-btn-nav {
-  padding: 10px 40px;
-  border-radius: 50px;
+  padding: 5px 25px;
+  border-radius: 25px;
+}
 
+
+.page-header {
+  font-size: 15px;
+  color: aliceblue;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+
+}
+
+.navbar-brand {
+  padding-left: 130px;
+}
+
+.font-color{
+  color: #7106b3;
+}
+
+.nav-item {
+  padding-right: 130px;
+}
+
+.color-btn {
+  background-color:#580090;
+  color: #ffffff;
+}
+
+.color-btn:hover {
+  background-color:#7106b3;
 }

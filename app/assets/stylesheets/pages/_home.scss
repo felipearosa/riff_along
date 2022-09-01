@@ -10,6 +10,10 @@ body {
   min-height: 100vh;
 }
 
+#body-container {
+  margin-top: 72px;
+}
+
 .heading-primary-main:hover {
   transform: translate3d(0, -10px, 22px);
   color: #ff0266;
@@ -26,13 +30,14 @@ body {
   height: 100vh;
   background-image:
   linear-gradient(to right bottom,
-   rgba(88, 0, 144, 0.8),
+  rgba(5, 5, 5, 0.8),
    rgba(5, 5, 5, 0.8)),
    url('https://img.wallpapersafari.com/desktop/1920/1080/95/88/W9ezN3.jpg');
 
   background-size: cover;
   background-position: top;
   position: relative;
+  margin-top: -72px;
 }
 
 .text-box {
@@ -41,10 +46,6 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-}
-
-.loader span {
-
 }
 
 .heading-primary {
@@ -61,29 +62,29 @@ body {
   letter-spacing: 5px;
 }
 
-.btn:link,
-.btn:visited {
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 10px 20px;
-  display: inline-block;
-  border-radius: 100px;
-  transition: all .2s;
-  position: relative;
-}
+// .btn:link,
+// .btn:visited {
+//   text-transform: uppercase;
+//   text-decoration: none;
+//   padding: 10px 20px;
+//   display: inline-block;
+//   border-radius: 100px;
+//   transition: all .2s;
+//   position: relative;
+// }
 
 .btn-home:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 20px rgba(189, 27, 170, 0.762);
 }
 
 .btn:active {
   transform: translateY(-1px);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(189, 27, 170, 0.762);
 }
 
 .btn-white {
-  background-color: #000;
+  background-color: rgba(189, 27, 170, 0.762);
   color: #fff;
   font-size: 14px;
 }
@@ -97,7 +98,7 @@ body {
 @-webkit-keyframes loading {
   to {
     text-shadow: 20px 0 70px #ff0266;
-    color:  #ff0266,
+    color:  #580090;
   }
 }
 .loader span:nth-child(2) {
