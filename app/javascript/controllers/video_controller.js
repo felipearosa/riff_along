@@ -9,7 +9,6 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log(this.startTarget);
     this.done = false;
     this.player = YouTubePlayer('player');
     this.player.loadVideoById(this.slugValue);
@@ -35,41 +34,54 @@ export default class extends Controller {
                 <td>(mastered_img)</td>
                 <td>${this.startTime} - ${this.endTime}</td>
                 <td class="btn btn-primary" data-video-target="row"  data-video-start="${this.exactStart}" data-video-end="${this.exactEnd}" data-action="click->video#playSolo">Go to Solo</td>
-                <td class="btn btn-primary" data-video-start="${this.exactStart}" data-video-end="${this.exactEnd}"    data-action="click->video#testLoop">Go to Loop</td>
+                <td class="btn btn-primary disabled" data-video-start="${this.exactStart}" data-video-end="${this.exactEnd}"    data-action="click->video#loop">Go to Loop</td>
 
             `;
       this.listTarget.appendChild(row);
     });
   }
 
-
-  testLoop(event){
-    const element = event.target;
-    this.player.loadVideoById({'videoId': this.slugValue,
-          'startSeconds': element.dataset.videoStart,
-          'endSeconds': element.dataset.videoEnd,
-          'suggestedQuality': 'large'});
-
-
-    this.player.on('stateChange', (event) => {
-      this.player.getPlayerState().then(data => {
-        if (data === 0 ) {
-          this.player.loadVideoById({'videoId': this.slugValue,
-          'startSeconds': element.dataset.videoStart,
-          'endSeconds': element.dataset.videoEnd,
-          'suggestedQuality': 'large'});
-        }
-      })
-    });
-  }
-
   playSolo(event){
-    const element = event.target
+    const element = event.target;
     this.player.loadVideoById({'videoId': this.slugValue,
     'startSeconds': element.dataset.videoStart,
     'endSeconds': element.dataset.videoEnd,
     'suggestedQuality': 'large'});
+
+    element.nextElementSibling.classList.remove('disabled')
+    this.#checkLoopActive(element.nextElementSibling)
   }
+
+  loop(event){
+    const element = event.target;
+    element.classList.toggle('loop-active');
+    // console.log(element.className.includes("loop-active"))
+    this.#checkLoopActive(element);
+  }
+
+  #checkLoopActive(element){
+    if(element.className.includes("loop-active")){
+      this.player.on('stateChange', (event) => {
+        this.player.getPlayerState().then(data => {
+          if (data === 0 ) {
+            this.player.loadVideoById({'videoId': this.slugValue,
+            'startSeconds': element.dataset.videoStart,
+            'endSeconds': element.dataset.videoEnd,
+            'suggestedQuality': 'large'});
+          }
+        })
+      });
+    } else {
+      this.player.on('stateChange', (event) => {
+        this.player.getPlayerState().then(data => {
+          if (data === 0) {
+            this.player.stopVideo()
+          }
+        })
+      });
+    }
+  }
+
 
   #turnSecIntoMin(seconds){
     let startTime
