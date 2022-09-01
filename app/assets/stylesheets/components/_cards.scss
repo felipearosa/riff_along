@@ -1,6 +1,10 @@
 .container h1 {
-  color: #5d0595;
+  color: $purple;
   font-weight: bold;
+}
+
+.container h2 {
+  font-family: $headers-font;
 }
 
 .cards {
@@ -9,6 +13,7 @@
   grid-gap: 16px;
   margin-bottom: 20px;
 }
+
 
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
@@ -49,6 +54,7 @@
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 17px;
 }
 
 .card-folder > img {
@@ -58,7 +64,6 @@
 }
 
 .card-folder h2 {
-  color: #5d0595;
   font-size: 16px;
   font-weight: bold;
   margin: 0;
@@ -128,11 +133,10 @@
 
 .achievements-card-folder {
   overflow: hidden;
-  background: #5d0495;
+  background: $purple;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   width: 100%;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-radius: 17px;
   opacity: 0.5;
   filter: alpha(opacity=50);
 }
