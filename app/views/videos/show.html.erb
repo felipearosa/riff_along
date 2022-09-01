@@ -1,16 +1,22 @@
 <div class="container-md"  data-controller="video" data-video-slug-value="<%= @params %>">
-  <div class="d-flex">
-    <h1>VIDEO</h1>
-    <button type="button" class="btn btn-dark btn-lg btn-block" data-video-target="start" data-action="click->video#markStart">Start</button>
-    <button type="button" class="btn btn-dark btn-lg btn-block" data-video-target="stop" data-action="click->video#markStop">Stop</button>
-  </div>
+      <h1>VIDEO</h1>
+
 
 
 
   <%# DIV PARA O IFRAME DO YOUTUBE %>
   <div id="video-container">
     <div id="player"></div>
+    <div class="d-flex">
+      <div class="btn btn-dark btn-lg btn-block disabled" data-video-target="start" data-action="click->video#markStart">Start Recording</div>
+      <div type="button" class="btn btn-dark btn-lg btn-block disabled" data-video-target="stop" data-action="click->video#markStop">Stop Recording</div>
+    </div>
+    <div data-video-target="message"></div>
   </div>
+
+   <div id="control" data-video-target="control">
+  </div>
+
   <table class="w-100" style="color:#000000">
       <thead>
           <tr>
@@ -22,9 +28,6 @@
       <tbody id="solo-list" data-video-target="list"></tbody>
   </table>
 
-  <div class="d-flex justify-content-between">
-    <button type="button" class="btn btn-success btn-lg btn-block">Start Over</button>
-    <button type="button" class="btn btn-info btn-lg btn-block">Loop</button>
-  </div>
+
 
 </div>
