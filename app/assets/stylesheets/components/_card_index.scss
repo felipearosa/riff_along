@@ -32,15 +32,6 @@
   margin: 0;
 }
 
-
-.card-trip-index .card-trip-infos {
-  padding: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  position: relative;
-}
-
 .card-trip-infos-index a {
   color: #580090;
   text-decoration: none;
@@ -49,15 +40,6 @@
 .card-trip-infos-index a:hover {
   color: #9d00ff;;
 }
-
-.card-trip-infos-index .card-trip-user {
-  position: absolute;
-  right: 16px;
-  top: -20px;
-  width: 40px;
-}
-
-
 
 .cards-index {
   display: grid;
