@@ -17,7 +17,14 @@ $headers-font: "Alata", "Alata", "sans-serif";
 
 @font-face {
   font-family: 'Alata';
-  src: url('Alata-Condensed.ttf');
+  src: url('Alata-Regular.ttf');
+  font-style: regular;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('Poppins-Regular.otf');
   font-style: regular;
   font-weight: 500;
 }
