@@ -1,10 +1,10 @@
-<header class="header">
+<header class="header" data-controller="navbar">
   <div class="text-box">
     <h1 class="heading-primary">
       <span class="heading-primary-main">The Riff Along</span>
     </h1>
     <%# <span class="heading-primary-sub effect-style">Master your song</span> %>
-    <h2 class="heading-primary span loader"><span class="m">M</span><span class="m">A</span><span class="m">S</span><span class="m">T</span><span class="m">E</span><span class="m">R</span><span class="m">&nbsp;</span><span class="m">Y</span><span class="m">O</span><span class="m">U</span><span class="m">R</span><span class="m">&nbsp;</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">G</span></h2>
+    <h2 class="heading-primary span loader"><span class="m">M</span><span class="m">&nbsp;</span><span class="m">A</span><span class="m">&nbsp;</span><span class="m">S</span><span class="m">&nbsp;</span><span class="m">T</span><span class="m">&nbsp;</span><span class="m">&nbsp;</span><span class="m">E</span><span class="m">&nbsp;</span><span class="m">&nbsp;</span><span class="m">R</span><span class="m">&nbsp;</span><span class="m">&nbsp;</span><span class="m">&nbsp;</span><span class="m">&nbsp;</span><span class="m">Y</span><span class="m">&nbsp;</span><span class="m">O</span><span class="m">&nbsp;</span><span class="m">U</span><span class="m">&nbsp;</span><span class="m">R</span><span class="m">&nbsp;</span><span class="m">&nbsp;</span><span class="m">&nbsp;</span><span class="m">&nbsp;</span><span class="m">S</span><span class="m">&nbsp;</span><span class="m">O</span><span class="m">&nbsp;</span><span class="m">N</span><span class="m">&nbsp;</span><span class="m">G</span></h2>
 
     <%= form_with url: videos_path, method: :get do %>
       <%= text_field_tag :query,
