@@ -29,13 +29,16 @@ export default class extends Controller {
     .then(data => {
       this.exactEnd = data
       this.endTime = this.#turnSecIntoMin(data);
+
+
       const row = document.createElement('tr');
+      row.dataset.action = "click->video#setRowActive";
+      row.dataset.videoTarget = "row";
       row.innerHTML = `
                 <td>(mastered_img)</td>
                 <td>${this.startTime} - ${this.endTime}</td>
-                <td class="btn btn-primary" data-video-target="row"  data-video-start="${this.exactStart}" data-video-end="${this.exactEnd}" data-action="click->video#playSolo">Go to Solo</td>
-                <td class="btn btn-primary disabled" data-video-start="${this.exactStart}" data-video-end="${this.exactEnd}"    data-action="click->video#loop">Go to Loop</td>
-
+                <td class="btn btn-primary" data-video-start="${this.exactStart}" data-video-end="${this.exactEnd}" data-action="click->video#playSolo">Go to Solo</td>
+                <td class="btn btn-primary disabled" data-video-start="${this.exactStart}" data-video-end="${this.exactEnd}" data-action="click->video#loop">Go to Loop</td>
             `;
       this.listTarget.appendChild(row);
     });
@@ -82,6 +85,13 @@ export default class extends Controller {
     }
   }
 
+  setRowActive(event){
+    const element = event.target;
+    this.rowTargets.forEach((row) => {
+      row.classList.remove('line-active');
+    })
+    element.closest('tr').classList.add('line-active')
+  }
 
   #turnSecIntoMin(seconds){
     let startTime
@@ -108,49 +118,4 @@ export default class extends Controller {
 
     return startTime
   }
-
-
-  // onPlayerStateChange = (event) => {
-  //   console.log('ok onPlayerStateChange')
-  //   if (event.data == YT.PlayerState.PLAYING && !this.done) {
-  //     //setTimeout(stopVideo, 6000);
-  //     //done = true;
-  //   }
-  // }
-
-  // stopVideo = () => {
-  //   console.log('ok stopVideo')
-  //   this.player.stopVideo();
-  // }
-
-
-
-  // onPlayerReady = (event) => {
-  //   console.log('ok onPlayerReady')
-  //   //event.target.playVideo();
-  //   event.target.loadVideoById(slug , 0.1, "large")
-  // };
-
-  // onYouTubeIframeAPIReady = () => {
-  //   console.log('ok onYouTubeIframeAPIReady')
-  //   this.player = YouTubePlayer('video', {
-  //     videoId: 'M7lc1UVf-VE'
-  //   });
-
-
-    // this.player = new YT.Player('player', {
-    //   height: '390',
-    //   width: '640',
-    //   videoId: '',
-    //   playerVars: {
-    //     'playsinline': 1
-    //   },
-    //   events: {
-    //     'onReady': (event) => this.onPlayerReady(event),
-    //     'onStateChange': (event) => this.onPlayerStateChange(event)
-    //   }
-    // });
-  //}
-
-
 }
