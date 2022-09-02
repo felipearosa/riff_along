@@ -17,9 +17,13 @@ class VideosController < ApplicationController
 
   def show
     @params = params[:id]
-    raise
+    @video = Video.new
+    @catalog = Catalog.new
   end
 
+  def create
+    redirect_to root_path
+  end
   private
 
   def loop_videos_search(url)

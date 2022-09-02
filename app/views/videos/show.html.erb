@@ -25,6 +25,12 @@
     </div>
   </div>
 
+  <%= simple_form_for [@catalog] do |f| %>
+  <%= f.association :list %>
+  <%= f.hidden_field :video_id, value: @params %>
+  <%= f.submit %>
+<% end %>
+
 
 
 </div>
