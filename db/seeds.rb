@@ -18,65 +18,14 @@ User.create(first_name: 'Eight', last_name: 'EightEight', email: 'test8@test.com
 User.create(first_name: 'Nine', last_name: 'NineNine', email: 'test9@test.com', password: '123123', password_confirmation: '123123')
 User.create(first_name: 'Ten', last_name: 'TenTen', email: 'test10@test.com', password: '123123', password_confirmation: '123123')
 
-List.create(name: 'Reggae', description: 'My reggae list i want to learn', user_id: 1)
-List.create(name: 'Pop', description: 'My pop songs, thats all. Shithead', user_id: 1)
-List.create(name: 'Indie', description: 'Not emo, indie. Just indie. And hate.', user_id: 1)
-List.create(name: 'Brega', description: 'List to feed my soul and grow mullets.', user_id: 1)
-List.create(name: 'Solos', description: 'My favorite solos songs', user_id: 1)
-
-List.create(name: 'Reggae', description: 'My reggae list i want to learn', user_id: 2)
-List.create(name: 'Pop', description: 'My pop songs, thats all. Shithead', user_id: 2)
-List.create(name: 'Indie', description: 'Not emo, indie. Just indie. And hate.', user_id: 2)
-List.create(name: 'Brega', description: 'List to feed my soul and grow mullets.', user_id: 2)
-List.create(name: 'Solos', description: 'My favorite solos songs', user_id: 2)
-
-List.create(name: 'Reggae', description: 'My reggae list i want to learn', user_id: 3)
-List.create(name: 'Pop', description: 'My pop songs, thats all. Shithead', user_id: 3)
-List.create(name: 'Indie', description: 'Not emo, indie. Just indie. And hate.', user_id: 3)
-List.create(name: 'Brega', description: 'List to feed my soul and grow mullets.', user_id: 3)
-List.create(name: 'Solos', description: 'My favorite solos songs', user_id: 3)
-
-List.create(name: 'Reggae', description: 'My reggae list i want to learn', user_id: 4)
-List.create(name: 'Pop', description: 'My pop songs, thats all. Shithead', user_id: 4)
-List.create(name: 'Indie', description: 'Not emo, indie. Just indie. And hate.', user_id: 4)
-List.create(name: 'Brega', description: 'List to feed my soul and grow mullets.', user_id: 4)
-List.create(name: 'Solos', description: 'My favorite solos songs', user_id: 4)
-
-List.create(name: 'Reggae', description: 'My reggae list i want to learn', user_id: 5)
-List.create(name: 'Pop', description: 'My pop songs, thats all. Shithead', user_id: 5)
-List.create(name: 'Indie', description: 'Not emo, indie. Just indie. And hate.', user_id: 5)
-List.create(name: 'Brega', description: 'List to feed my soul and grow mullets.', user_id: 5)
-List.create(name: 'Solos', description: 'My favorite solos songs', user_id: 5)
-
-List.create(name: 'Reggae', description: 'My reggae list i want to learn', user_id: 6)
-List.create(name: 'Pop', description: 'My pop songs, thats all. Shithead', user_id: 6)
-List.create(name: 'Indie', description: 'Not emo, indie. Just indie. And hate.', user_id: 6)
-List.create(name: 'Brega', description: 'List to feed my soul and grow mullets.', user_id: 6)
-List.create(name: 'Solos', description: 'My favorite solos songs', user_id: 6)
-
-List.create(name: 'Reggae', description: 'My reggae list i want to learn', user_id: 7)
-List.create(name: 'Pop', description: 'My pop songs, thats all. Shithead', user_id: 7)
-List.create(name: 'Indie', description: 'Not emo, indie. Just indie. And hate.', user_id: 7)
-List.create(name: 'Brega', description: 'List to feed my soul and grow mullets.', user_id: 7)
-List.create(name: 'Solos', description: 'My favorite solos songs', user_id: 7)
-
-List.create(name: 'Reggae', description: 'My reggae list i want to learn', user_id: 8)
-List.create(name: 'Pop', description: 'My pop songs, thats all. Shithead', user_id: 8)
-List.create(name: 'Indie', description: 'Not emo, indie. Just indie. And hate.', user_id: 8)
-List.create(name: 'Brega', description: 'List to feed my soul and grow mullets.', user_id: 8)
-List.create(name: 'Solos', description: 'My favorite solos songs', user_id: 8)
-
-List.create(name: 'Reggae', description: 'My reggae list i want to learn', user_id: 9)
-List.create(name: 'Pop', description: 'My pop songs, thats all. Shithead', user_id: 9)
-List.create(name: 'Indie', description: 'Not emo, indie. Just indie. And hate.', user_id: 9)
-List.create(name: 'Brega', description: 'List to feed my soul and grow mullets.', user_id: 9)
-List.create(name: 'Solos', description: 'My favorite solos songs', user_id: 9)
-
-List.create(name: 'Reggae', description: 'My reggae list i want to learn', user_id: 10)
-List.create(name: 'Pop', description: 'My pop songs, thats all. Shithead', user_id: 10)
-List.create(name: 'Indie', description: 'Not emo, indie. Just indie. And hate.', user_id: 10)
-List.create(name: 'Brega', description: 'List to feed my soul and grow mullets.', user_id: 10)
-List.create(name: 'Solos', description: 'My favorite solos songs', user_id: 10)
+10.times do |i|
+  i += 1
+  List.create(name: 'Reggae', description: 'My reggae list i want to learn', user_id: i)
+  List.create(name: 'Pop', description: 'My pop songs, thats all. Shithead', user_id: i)
+  List.create(name: 'Indie', description: 'Not emo, indie. Just indie. And hate.', user_id: i)
+  List.create(name: 'Brega', description: 'List to feed my soul and grow mullets.', user_id: i)
+  List.create(name: 'Solos', description: 'My favorite solos songs', user_id: i)
+end
 
 Video.create(youtube_key: '20Ov0cDPZy8', title: "John Mayer - Free Fallin' (Live at the Nokia Theatre)", image_url: 'https://i.ytimg.com/vi/20Ov0cDPZy8/hqdefault.jpg')
 Video.create(youtube_key: 'obkrMiyDrbs', title: "Alicia Keys & John Mayer - If I ain't got you - Gravity (Better audio quality)", image_url: 'https://i.ytimg.com/vi/obkrMiyDrbs/hqdefault.jpg')
