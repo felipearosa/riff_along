@@ -17,6 +17,7 @@ class VideosController < ApplicationController
 
   def show
     @params = params[:id]
+    raise
   end
 
   private

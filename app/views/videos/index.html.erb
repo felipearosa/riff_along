@@ -15,7 +15,7 @@
           <img src="<%= video[:image_url_high] %>" />
           <div class="card-trip-infos-index">
 
-            <h2><%= link_to video[:title], video_path(video[:video_id]) %></h2>
+            <h2><%= link_to video[:title], video_path(video[:video_id], title: video[:title], img: video[:image_url_high]) %></h2>
           </div>
         </div>
 
