@@ -12,7 +12,7 @@
 
 
 .line-active{
-  background-color: #00ff00;
+  background-color: rgba(163, 26, 249, 0.126)
 }
 
 
@@ -20,13 +20,13 @@
   color: #000000;
 }
 
+.w-100 {
+  padding-left: 60px;
 
-table {
-  min-height: 10px;
 }
 
-tr {
-  height:20px
+.height-test {
+  height: 380px;
 }
 
 td.container-td > div {
@@ -37,4 +37,8 @@ td.container-td > div {
 
 td.container-td {
   height: 10px;
+}
+
+.font-color {
+  color: #580090;
 }
