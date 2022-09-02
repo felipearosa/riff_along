@@ -1,7 +1,5 @@
-
 <div class="container">
   <div class="index-card">
-
 
     <% if params[:query].nil? || params[:query] == "" %>
       <h1>Don't know where to start? Go with Jimi</h1>
@@ -12,7 +10,9 @@
       <% @videos.each do |video| %>
 
         <div class="card-trip-index m-3">
-          <img src="<%= video[:image_url_high] %>" />
+          <%=  link_to video_path(video[:video_id]) do %>
+            <img src="<%= video[:image_url_high] %>" />
+          <% end %>
           <div class="card-trip-infos-index">
 
             <h2><%= link_to video[:title], video_path(video[:video_id]) %></h2>

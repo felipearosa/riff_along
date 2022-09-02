@@ -157,7 +157,8 @@ body {
 }
 
 .demo-function {
-  background: #000;
+  background: rgb(255, 255, 255);
+  color:rgb(0, 0, 0);
   display: flex;
   padding: 100px;
   align-items: center;
@@ -166,8 +167,7 @@ body {
 }
 
 .demo-function img {
-  max-width: 420px;
-  max-height: 290px;
+  max-width: 480px;
   border-radius: 17px;
   margin-right: 190px;
 }

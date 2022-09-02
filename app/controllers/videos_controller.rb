@@ -17,6 +17,12 @@ class VideosController < ApplicationController
 
   def show
     @params = params[:id]
+    @video = Video.new
+    @catalog = Catalog.new
+  end
+
+  def create
+    redirect_to root_path
   end
 
   private

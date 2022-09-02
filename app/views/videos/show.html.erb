@@ -30,6 +30,12 @@
 
   </div>
 
+  <%= simple_form_for [@catalog] do |f| %>
+  <%= f.association :list, collection: List.where(user_id: current_user) %>
+  <%= f.hidden_field :video_id, value: @params %>
+  <%= f.submit 'Salvar Música', class:"btn rounded-btn-nav color-btn" %>
+<% end %>
+
 
 
 </div>
