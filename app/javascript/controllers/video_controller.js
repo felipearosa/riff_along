@@ -97,10 +97,10 @@ export default class extends Controller {
     console.log(row.dataset.videoStart);
 
     this.controlTarget.innerHTML = `
-    <div class="d-flex justify-content-between">
-      <button type="button" class="btn btn-success btn-lg btn-block"  data-video-start="${row.dataset.videoStart}" data-video-end="${row.dataset.videoEnd}" data-action="click->video#playSolo">Start Over</button>
+    <div class="d-flex justify-content-around">
+      <button type="button" class="btn color-btn btn-lg btn-block rounded-btn-nav"  data-video-start="${row.dataset.videoStart}" data-video-end="${row.dataset.videoEnd}" data-action="click->video#playSolo">Start Over</button>
 
-      <button type="button" class="btn btn-info btn-lg btn-block"  data-video-start="${row.dataset.videoStart}" data-video-end="${row.dataset.videoEnd}" data-action="click->video#loop">Loop</button>
+      <button type="button" class="btn btn-dark btn-lg btn-block rounded-btn-nav"  data-video-start="${row.dataset.videoStart}" data-video-end="${row.dataset.videoEnd}" data-action="click->video#loop">Loop</button>
     </div>
     `
 
