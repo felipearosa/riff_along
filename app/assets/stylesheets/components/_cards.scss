@@ -144,7 +144,7 @@
 .achievements-card-folder > img {
   height: 200px;
   width: 100%;
-  object-fit: cover;
+  object-fit: fill;
 }
 
 .achievements-card-folder h2 {
@@ -153,14 +153,22 @@
   margin: 0;
 }
 
+.achievements-card-folder-infos p {
+  margin-top: 0;
+  margin-bottom: 0rem;
+}
+
+.achievements-card-folder-infos {
+  font-size: 16px;
+  text-align: center;
+}
+
 .achievements-card-folder .achievements-card-folder-infos {
   padding: 16px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   position: relative;
-  // margin-bottom: 20px;
-  // border-bottom: 5px;
 }
 
 .achievements-card-folder-infos .achievements-card-folder-user {
