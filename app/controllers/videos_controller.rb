@@ -24,6 +24,7 @@ class VideosController < ApplicationController
   def create
     redirect_to root_path
   end
+
   private
 
   def loop_videos_search(url)
