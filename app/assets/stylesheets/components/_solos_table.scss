@@ -10,23 +10,23 @@
   background-color: #f35252;
 }
 
-
-.line-active{
+.focus-btn:focus {
   background-color: rgba(163, 26, 249, 0.126)
 }
+
 
 
 #video-container div p {
   color: #000000;
 }
 
-.w-100 {
-  padding-left: 60px;
-
-}
 
 .height-test {
-  height: 380px;
+  height: 360px;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 50px;
+  margin-left: 60px;
 }
 
 td.container-td > div {
@@ -41,4 +41,14 @@ td.container-td {
 
 .font-color {
   color: #580090;
+}
+
+
+.table-striped > tbody > tr:nth-child(odd) {
+  background-color:  rgba(163, 26, 249, 0.123);
+  border-radius: 70px;
+}
+
+.line-active{
+  background-color:#5900909a !important
 }

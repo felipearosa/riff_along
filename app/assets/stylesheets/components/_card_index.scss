@@ -81,3 +81,8 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
+
+.position-button {
+  justify-content: flex-end;
+  text-align: right;
+}

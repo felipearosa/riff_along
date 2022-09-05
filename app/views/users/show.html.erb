@@ -1,6 +1,7 @@
 <div class="container py-4">
   <div class="mb-5">
     <h1><%= @user.first_name %>'s Library</h1>
+     <%= link_to 'Create List', new_list_path, class: 'btn color-btn mb-2 rounded-btn-nav position-button' %>
   </div>
   <div>
     <h2>History</h2>
@@ -40,10 +41,11 @@
     <% end %>
     <%# END HERE %>
 
+
+ <a class="arrow mb-4" href="#top"><i class="fa-solid fa-arrow-up mb-5 ps-1"></i></a>
+
     <div class="title">
-      <a href="">
-        <h2>Achievements</h2>
-      </a>
+      <a href=""><h2>Achievements</h2></a>
     </div>
     <div class="achievements-cards mt-3">
       <div class="achievements-card-folder">
