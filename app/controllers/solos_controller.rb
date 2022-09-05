@@ -5,14 +5,11 @@ class SolosController < ApplicationController
   #   # authorize @solo
   # end
 
-  def create
-    @solo = Solo.new(params[:solo])
-    # @solo.user = current_user
-    # authorize @solo
-    if @solo.save
-      redirect_to solo_path(@solo)
-    else
-      render :new, status: :unprocessable_entity
-    end
+
+  def destroy
+    @solo = Solo.find(params[:id])
+    @solo.destroy
+
+    redirect_to user_video_path(user_id: current_user, id: @solo.video.youtube_key), status: :see_other
   end
 end

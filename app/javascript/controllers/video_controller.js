@@ -3,7 +3,7 @@ import YouTubePlayer from 'youtube-player';
 
 // Connects to data-controller="video"
 export default class extends Controller {
-  static targets = [ "start", "stop", "list", "row", "control", "message" ]
+  static targets = [ "start", "stop", "list", "row", "control", "message", "soloform" ]
   static values = {
     slug: String
   }
@@ -15,6 +15,14 @@ export default class extends Controller {
     this.player.playVideo();
     console.log('sworking2');
     this.recording == false;
+    this.soloNum = 0
+    console.log(this. rowTargets)
+    this.rowTargets.forEach((row) => {
+      this.soloformTargets.forEach((form) => {
+        form.insertAdjacentHTML('beforeend', `<input value="${row.dataset.videoStart}, ${row.dataset.videoEnd}, ${row.dataset.soloId}" autocomplete="off" type="hidden" name="solos[time${this.soloNum}]" id="list_video_id"></input>`)
+        this.soloNum += 1
+      })
+    });
 
     this.player.on('stateChange', (event) => {
       this.player.getPlayerState().then(data => {
@@ -58,8 +66,13 @@ export default class extends Controller {
       row.innerHTML = `
                 <td class="container-td"><div>(mastered_img)</div></td>
                 <td class="container-td"><div>${this.startTime} - ${this.endTime}</div></td>
-            `;
+                <td data-action="click->video#deleteRow">❌</td>
+            `
       this.listTarget.appendChild(row);
+      this.soloNum += 1
+      this.soloformTargets.forEach((form) => {
+        form.insertAdjacentHTML('beforeend', `<input value="${this.exactStart}, ${this.exactEnd}" autocomplete="off" type="hidden" name="solos[time${this.soloNum}]" id="list_video_id"></input>`)
+      })
     });
     this.recording = false;
     this.stopTarget.classList.add('disabled');
@@ -107,6 +120,17 @@ export default class extends Controller {
     this.#checkLoopActive(row);
   }
 
+  deleteRow(e){
+    const element = e.target;
+    let row = element.closest('tr');
+    console.log(row.dataset.videoStart);
+
+    this.soloformTargets.forEach((form) => {
+      let formInput = form.querySelector(`input[value="${row.dataset.videoStart}, ${row.dataset.videoEnd}"]`);
+      formInput.remove();
+    })
+    row.remove();
+  }
 
   #loadSolo(element){
     this.player.loadVideoById({'videoId': this.slugValue,
@@ -151,10 +175,10 @@ export default class extends Controller {
     if(seconds <60){
       const exactSecond = Math.floor(seconds)
       if(exactSecond <10){
-        startTime = `0:0${exactSecond}`
+        startTime = `00:0${exactSecond}`
 
       } else {
-        startTime = `0:${exactSecond}`
+        startTime = `00:${exactSecond}`
       }
     } else {
       const startTimeMin = Math.floor(seconds/60)
