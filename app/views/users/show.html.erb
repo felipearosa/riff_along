@@ -1,20 +1,22 @@
 <div class="container py-4">
   <div class="mb-5">
     <h1><%= @user.first_name %>'s Library</h1>
-     <%= link_to 'Create List', new_list_path, class: 'btn color-btn mb-2 rounded-btn-nav position-button' %>
+    <%= link_to 'Create List', new_list_path, class: 'btn color-btn mb-2 rounded-btn-nav position-button mt-3' %>
   </div>
   <div>
     <h2>History</h2>
     <div class="cards mb-5 mt-3">
       <% @user.videos.reverse.last(5).each do |video| %>
         <div class="card-folder">
-        <img src="<%= video.image_url %>"/>
-        <div class="card-folder-infos">
-          <div class="card-music-title">
-            <a href="<%= user_video_path(user_id: @user, id: video.youtube_key) %>"><h2><%= video.title %></h2></a>
+          <img src="<%= video.image_url %>"/>
+          <div class="card-folder-infos">
+            <div class="card-music-title">
+              <a href="<%= user_video_path(user_id: @user, id: video.youtube_key) %>">
+                <h2><%= video.title %></h2>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
       <% end %>
     </div>
 
@@ -22,7 +24,10 @@
     <% @user.lists.each do |list| %>
       <div>
         <div class="title">
-            <h2><%= list.name %></h2>
+          <h2><%= list.name %> <%= link_to "",
+  list,
+  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "fa-solid fa-trash"
+%>  <%= link_to "", edit_list_path, class: "fa-solid fa-pen-to-square" %></h2>
         </div>
         <div class="cards mb-5 mt-3">
           <% list.videos.last(5).each do |video| %>
@@ -30,22 +35,25 @@
               <img src="<%= video.image_url %>"/>
               <div class="card-folder-infos">
                 <div class="card-music-title">
-                  <a href="<%= user_video_path(user_id: @user, id: video.youtube_key) %>"><h2><%= video.title %></h2></a>
+                  <a href="<%= user_video_path(user_id: @user, id: video.youtube_key) %>">
+                    <h2><%= video.title %></h2>
+                  </a>
                 </div>
               </div>
             </div>
           <% end %>
-          <%= link_to "See all videos", list_path(list), class:"btn color-btn rounded-btn-nav" %>
         </div>
+        <%= link_to "See all videos", list_path(list), class:"btn color-btn rounded-btn-nav mb-4" %>
       </div>
     <% end %>
     <%# END HERE %>
 
-
- <a class="arrow mb-4" href="#top"><i class="fa-solid fa-arrow-up mb-5 ps-1"></i></a>
+    <a class="arrow mb-4" href="#top"><i class="fa-solid fa-arrow-up mb-5 ps-1"></i></a>
 
     <div class="title">
-      <a href=""><h2>Achievements</h2></a>
+      <a href="">
+        <h2>Achievements</h2>
+      </a>
     </div>
     <div class="achievements-cards mt-3">
       <div class="achievements-card-folder">
