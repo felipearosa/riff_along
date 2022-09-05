@@ -59,7 +59,7 @@ class ListsController < ApplicationController
   def destroy
     @list.destroy
 
-    redirect_to lists_path, status: :see_other
+    redirect_to user_path(current_user), status: :see_other
   end
 
   private

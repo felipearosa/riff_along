@@ -1,12 +1,10 @@
 <div class="container py-4">
   <div class="mb-5">
-    <h1>Username Library</h1>
+    <h1><%= @user.first_name %>'s Library</h1>
      <%= link_to 'Create List', new_list_path, class: 'btn color-btn mb-2 rounded-btn-nav position-button' %>
   </div>
   <div>
-    <div class="title">
-      <a href=""><h2>History</h2></a>
-    </div>
+    <h2>History</h2>
     <div class="cards mb-5 mt-3">
       <% @user.videos.reverse.last(5).each do |video| %>
         <div class="card-folder">
@@ -20,30 +18,28 @@
       <% end %>
     </div>
 
-
-
-<%# THIS IS THE LIST FROM  ACTIVE RECORD %>
-  <% @user.lists.each do |list| %>
-    <div>
-      <div class="title">
-      <a href=""><h2><%= list.name %></h2></a>
-      </div>
-      <div class="cards mb-5 mt-3">
-        <% list.videos.each do |video| %>
-         <div class="card-folder">
-          <img src="<%= video.image_url %>"/>
-          <div class="card-folder-infos">
-            <div class="card-music-title">
-              <a href="<%= user_video_path(user_id: @user, id: video.youtube_key) %>"><h2><%= video.title %></h2></a>
-            </div>
-          </div>
+    <%# THIS IS THE LIST FROM  ACTIVE RECORD %>
+    <% @user.lists.each do |list| %>
+      <div>
+        <div class="title">
+            <h2><%= list.name %></h2>
         </div>
-        <% end %>
-
+        <div class="cards mb-5 mt-3">
+          <% list.videos.last(5).each do |video| %>
+            <div class="card-folder">
+              <img src="<%= video.image_url %>"/>
+              <div class="card-folder-infos">
+                <div class="card-music-title">
+                  <a href="<%= user_video_path(user_id: @user, id: video.youtube_key) %>"><h2><%= video.title %></h2></a>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <%= link_to "See all videos", list_path(list), class:"btn color-btn rounded-btn-nav" %>
+        </div>
       </div>
-    </div>
-  <% end %>
-<%# END HERE %>
+    <% end %>
+    <%# END HERE %>
 
 
  <a class="arrow mb-4" href="#top"><i class="fa-solid fa-arrow-up mb-5 ps-1"></i></a>
