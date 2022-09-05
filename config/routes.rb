@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   end
   resources :catalogs, only: [:create]
 
+  resources :solos, only: [:create, :update, :destroy]
+
 end

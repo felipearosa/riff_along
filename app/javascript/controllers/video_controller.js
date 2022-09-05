@@ -3,7 +3,7 @@ import YouTubePlayer from 'youtube-player';
 
 // Connects to data-controller="video"
 export default class extends Controller {
-  static targets = [ "start", "stop", "list", "row", "control", "message" ]
+  static targets = [ "start", "stop", "list", "row", "control", "message", "soloform" ]
   static values = {
     slug: String
   }
@@ -15,6 +15,7 @@ export default class extends Controller {
     this.player.playVideo();
     console.log('sworking2');
     this.recording == false;
+    this.soloNum = 0
 
     this.player.on('stateChange', (event) => {
       this.player.getPlayerState().then(data => {
@@ -60,7 +61,11 @@ export default class extends Controller {
                 <td class="container-td"><div>${this.startTime} - ${this.endTime}</div></td>
             `;
       this.listTarget.appendChild(row);
+      this.soloformTargets.forEach((form) => {
+        form.insertAdjacentHTML('beforeend', `<input value="${this.exactStart}, ${this.exactEnd}" autocomplete="off" type="hidden" name="solos[time${this.soloNum}]" id="list_video_id"></input>`)
+      })
     });
+    this.soloNum += 1
     this.recording = false;
     this.stopTarget.classList.add('disabled');
     this.startTarget.classList.remove('disabled');

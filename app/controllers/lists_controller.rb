@@ -22,6 +22,16 @@ class ListsController < ApplicationController
       video_image_url = videos_info["snippet"]["thumbnails"]["medium"]["url"]
       @video = Video.new(title: video_title, image_url: video_image_url, youtube_key: video_id)
       @video.save!
+      if params[:solos]
+        @test = []
+        @solos = params[:solos]
+        @solos.each do |_key, arr|
+          arr = arr.split(',')
+          @solo = Solo.new(starting_time: arr[0], ending_time: arr[1])
+          @solo.video = @video
+          @solo.save!
+        end
+      end
       @catalog = Catalog.new
       @catalog.video = @video
       @catalog.list = @list
@@ -37,7 +47,6 @@ class ListsController < ApplicationController
         render :new, status: :unprocessable_entity
       end
     end
-
   end
 
   def edit

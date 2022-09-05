@@ -16,14 +16,17 @@ class VideosController < ApplicationController
   end
 
   def show
+    @solo = Solo.new
     @params = params[:id]
     @video = Video.new
     @catalog = Catalog.new
     @list = List.new
-
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @solos = @user.videos.where(youtube_key: "Fo4746XZgw8").first.solos
+      # Needs refactoring
+      unless @user.videos.where(youtube_key: @params).last.solos.empty?
+        @solos = @user.videos.where(youtube_key: @params).last.solos
+      end
     end
   end
 
