@@ -16,7 +16,7 @@ body {
 
 .heading-primary-main:hover {
   transform: translate3d(0, -10px, 22px);
-  color: #ff0266;
+  color: $light-purple;
 }
 
 .fa-paper-plane, .fa-download, .fa-share-nodes {
