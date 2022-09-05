@@ -16,13 +16,14 @@ class VideosController < ApplicationController
   end
 
   def show
-    @solo = Solo.new
+    # @solo = Solo.new
     @params = params[:id]
-    @video = Video.new
+    # @video = Video.new
     @catalog = Catalog.new
     @list = List.new
     if params[:user_id]
       @user = User.find(params[:user_id])
+      @video = @user.videos.where(youtube_key: @params).last
       # Needs refactoring
       unless @user.videos.where(youtube_key: @params).last.solos.empty?
         @solos = @user.videos.where(youtube_key: @params).last.solos
@@ -32,6 +33,19 @@ class VideosController < ApplicationController
 
   def create
     redirect_to root_path
+  end
+
+  def update
+    @video = Video.find(params[:id])
+    @solos = params[:solos]
+    @video.solos.destroy_all
+    @solos.each do |_key, arr|
+      arr = arr.split(',')
+      @solo = Solo.new(starting_time: arr[0], ending_time: arr[1])
+      @solo.video = @video
+      @solo.save!
+    end
+    raise
   end
 
   private

@@ -33,6 +33,10 @@
                 </tbody>
             </table>
         </div>
+        <%= simple_form_for [@video], data: { video_target: 'soloform' } do |f| %>
+              <%= f.hidden_field :video_id, value: @params %>
+              <%= f.submit 'Update Solos', class:"btn rounded-btn-nav color-btn mb-5" %>
+            <% end %>
       </div>
         <div id="control" data-video-target="control"></div>
     </div>

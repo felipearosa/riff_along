@@ -16,6 +16,13 @@ export default class extends Controller {
     console.log('sworking2');
     this.recording == false;
     this.soloNum = 0
+    console.log(this. rowTargets)
+    this.rowTargets.forEach((row) => {
+      this.soloformTargets.forEach((form) => {
+        form.insertAdjacentHTML('beforeend', `<input value="${row.dataset.videoStart}, ${row.dataset.videoEnd}" autocomplete="off" type="hidden" name="solos[time${this.soloNum}]" id="list_video_id"></input>`)
+        this.soloNum += 1
+      })
+    });
 
     this.player.on('stateChange', (event) => {
       this.player.getPlayerState().then(data => {
@@ -61,11 +68,11 @@ export default class extends Controller {
                 <td class="container-td"><div>${this.startTime} - ${this.endTime}</div></td>
             `;
       this.listTarget.appendChild(row);
+      this.soloNum += 1
       this.soloformTargets.forEach((form) => {
         form.insertAdjacentHTML('beforeend', `<input value="${this.exactStart}, ${this.exactEnd}" autocomplete="off" type="hidden" name="solos[time${this.soloNum}]" id="list_video_id"></input>`)
       })
     });
-    this.soloNum += 1
     this.recording = false;
     this.stopTarget.classList.add('disabled');
     this.startTarget.classList.remove('disabled');
