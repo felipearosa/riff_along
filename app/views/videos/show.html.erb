@@ -11,20 +11,22 @@
       <div data-video-target="message"></div>
     </div>
     <div class="w-100">
-      <div class="height-test">
+      <div class="height-test container">
+      <h3 class="font-color text-center m-3">Your Loops</h3>
+        <div class="mb-3" id="control" data-video-target="control"></div>
         <div class="font-color">
-            <table class="w-100">
+            <table class="w-100 table table-striped">
                 <thead>
                     <tr>
-                        <th>Mastered</th>
-                        <th>Time</th>
+                        <th class="text-center">Mastered</th>
+                        <th class="text-center">Time</th>
                     </tr>
                 </thead>
                 <tbody id="solo-list" data-video-target="list"></tbody>
             </table>
         </div>
       </div>
-        <div id="control" data-video-target="control"></div>
+      <%# <div id="control" data-video-target="control"></div> %>
     </div>
   </div>
 
@@ -34,7 +36,7 @@
         <div class="container w-100">
           <div class="row justify-content-center form-signup">
             <div class="col-12">
-              <h1 class="">Save to existing List</h1>
+              <h1 class="font-font">Save to existing List</h1>
             <%= simple_form_for [@catalog] do |f| %>
               <%= f.association :list, collection: List.where(user_id: current_user) %>
               <%= f.hidden_field :video_id, value: @params %>
@@ -49,7 +51,7 @@
       <div class="container w-100">
         <div class="row justify-content-center form-signup">
           <div class="col-12">
-            <h1 class="">Save to new List</h1>
+            <h1 class="font-color font-font">Save to new List</h1>
             <%= simple_form_for(@list) do |f| %>
               <%= f.input :name, label: "List Name" %>
               <%= f.input :description, label: "List Description" %>
