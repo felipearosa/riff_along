@@ -19,6 +19,7 @@ class VideosController < ApplicationController
     @params = params[:id]
     @video = Video.new
     @catalog = Catalog.new
+    @list = List.new
   end
 
   def create
