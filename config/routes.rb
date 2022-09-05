@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   resources :lists
 
   resources :users, only: [:show]
-  resources :catalogs, only: [:create]
+  resources :catalogs, only: [:create, :destroy]
 
 end

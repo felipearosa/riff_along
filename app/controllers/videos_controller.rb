@@ -26,6 +26,12 @@ class VideosController < ApplicationController
     redirect_to root_path
   end
 
+  def destroy
+    @video = Video.find(params[:id])
+    @video.destroy
+    redirect_to videos_path, status: :see_other
+  end
+
   private
 
   def loop_videos_search(url)
@@ -41,4 +47,5 @@ class VideosController < ApplicationController
       @videos << video_final if video["id"]["kind"] == "youtube#video"
     end
   end
+
 end
