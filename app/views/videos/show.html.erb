@@ -34,8 +34,8 @@
                 <% if @solos %>
                   <% @solos.each do |solo| %>
                   <tr data-action="click->video#setRowActive" data-video-target="row" data-video-start="<%= solo.starting_time %>" data-video-end="<%= solo.ending_time %>" data-solo-id="<%= solo.id %>">
-                    <td class="container-td"><div>(mastered_img)</div></td>
-                    <td class="container-td"><div><%= "%02d:%02d" % [solo.starting_time.to_i/60%60, solo.starting_time.to_i%60] %> - <%= "%02d:%02d" % [solo.ending_time.to_i/60%60, solo.ending_time.to_i%60] %></div></td>
+                    <td class="container-td text-center"><div>(mastered_img)</div></td>
+                    <td class="container-td text-center"><div><%= "%02d:%02d" % [solo.starting_time.to_i/60%60, solo.starting_time.to_i%60] %> - <%= "%02d:%02d" % [solo.ending_time.to_i/60%60, solo.ending_time.to_i%60] %></div></td>
                     <td><%= link_to "❌", solo_path(solo),  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%></td>
                   </tr>
                   <% end %>
@@ -60,7 +60,7 @@
           <div class="container">
             <div class="row form-signup">
               <div class="col-12 text-center">
-                <h1 class="">To save your riff:</h1>
+                <h1 class="font-font">To save your riff:</h1>
                 <p class="card-product-p mt-3"><%= link_to "Sign Up", new_user_registration_path, class:"btn color-btn rounded-btn-nav" %>
                 or
                 <%= link_to "Login", new_user_session_path, class: "btn btn-dark rounded-btn-nav" %>
@@ -76,7 +76,7 @@
           <div class="container w-100">
             <div class="row justify-content-center form-signup">
               <div class="col-12">
-                <h1 class="">Save to existing List</h1>
+                <h1 class="font-font">Save to existing List</h1>
               <%= simple_form_for [@catalog], data: { video_target: 'soloform' } do |f| %>
                 <%= f.association :list, collection: List.where(user_id: current_user) %>
                 <%= f.hidden_field :video_id, value: @params %>
@@ -91,7 +91,7 @@
         <div class="container w-100">
           <div class="row justify-content-center form-signup">
             <div class="col-12">
-              <h1 class="">Save to new List</h1>
+              <h1 class="font-font">Save to new List</h1>
               <%= simple_form_for [@list], data: { video_target: 'soloform'} do |f| %>
                 <%= f.input :name, label: "List Name" %>
                 <%= f.input :description, label: "List Description" %>
