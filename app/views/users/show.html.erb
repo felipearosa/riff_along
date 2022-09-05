@@ -7,15 +7,13 @@
     <div class="cards mb-5 mt-3">
       <% @user.videos.reverse.last(5).each do |video| %>
         <div class="card-folder">
-          <img src="<%= video.image_url %>"/>
-          <div class="card-folder-infos">
-            <div class="card-music-title">
-              <a href="<%= video_path(video.youtube_key) %>">
-                <h2><%= video.title %></h2>
-              </a>
-            </div>
+        <img src="<%= video.image_url %>"/>
+        <div class="card-folder-infos">
+          <div class="card-music-title">
+            <a href="<%= user_video_path(user_id: @user, id: video.youtube_key) %>"><h2><%= video.title %></h2></a>
           </div>
         </div>
+      </div>
       <% end %>
     </div>
 
@@ -31,9 +29,7 @@
               <img src="<%= video.image_url %>"/>
               <div class="card-folder-infos">
                 <div class="card-music-title">
-                  <a href="<%= video_path(video.youtube_key) %>">
-                    <h2><%= video.title %></h2>
-                  </a>
+                  <a href="<%= user_video_path(user_id: @user, id: video.youtube_key) %>"><h2><%= video.title %></h2></a>
                 </div>
               </div>
             </div>
