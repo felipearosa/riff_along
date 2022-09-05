@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :videos
-  resources :lists
+  resources :lists, except: [:index]
 
   resources :users do
     resources :videos, only: [:show]

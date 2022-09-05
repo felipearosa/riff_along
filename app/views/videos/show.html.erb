@@ -19,14 +19,16 @@
                     <tr>
                         <th>Mastered</th>
                         <th>Time</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="solo-list" data-video-target="list">
                 <% if @solos %>
                   <% @solos.each do |solo| %>
-                  <tr data-action="click->video#setRowActive" data-video-target="row" data-video-start="<%= solo.starting_time %>" data-video-end="<%= solo.ending_time %>">
+                  <tr data-action="click->video#setRowActive" data-video-target="row" data-video-start="<%= solo.starting_time %>" data-video-end="<%= solo.ending_time %>" data-solo-id="<%= solo.id %>">
                     <td class="container-td"><div>(mastered_img)</div></td>
                     <td class="container-td"><div><%= "%02d:%02d" % [solo.starting_time.to_i/60%60, solo.starting_time.to_i%60] %> - <%= "%02d:%02d" % [solo.ending_time.to_i/60%60, solo.ending_time.to_i%60] %></div></td>
+                    <td><%= link_to "❌", solo_path(solo),  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%></td>
                   </tr>
                   <% end %>
                 <% end %>
