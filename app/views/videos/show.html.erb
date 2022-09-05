@@ -1,8 +1,14 @@
+<%# verificar se a youtube key da página está salva em algum video %>
+<%# se estiver, redirecionar para a página do video já salvo %>
+<%# se nao, para a página normal do vídeo %>
+
+
+
 <div class="container-md mt-3"  data-controller="video" data-video-slug-value="<%= @params %>">
   <h1 class="font-color">Loop</h1>
   <div class="d-flex">
     <div id="video-container">
-    <%# DIV PARA O IFRAME DO YOUTUBE %>
+      <%# DIV PARA O IFRAME DO YOUTUBE %>
       <div id="player"></div>
       <div class="d-flex justify-content-around">
         <div class="btn btn-dark btn-lg btn-block disabled mt-3 rounded-btn-nav" data-video-target="start" data-action="click->video#markStart">Start Recording</div>
@@ -13,18 +19,18 @@
     <div class="w-100">
       <div class="height-test">
         <div class="font-color">
-            <table class="w-100">
-                <thead>
-                    <tr>
-                        <th>Mastered</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody id="solo-list" data-video-target="list"></tbody>
-            </table>
+          <table class="w-100">
+            <thead>
+              <tr>
+                <th>Mastered</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody id="solo-list" data-video-target="list"></tbody>
+          </table>
         </div>
       </div>
-        <div id="control" data-video-target="control"></div>
+      <div id="control" data-video-target="control"></div>
     </div>
   </div>
 
@@ -35,16 +41,16 @@
           <div class="row justify-content-center form-signup">
             <div class="col-12">
               <h1 class="">Save to existing List</h1>
-            <%= simple_form_for [@catalog] do |f| %>
-              <%= f.association :list, collection: List.where(user_id: current_user) %>
-              <%= f.hidden_field :video_id, value: @params %>
-              <%= f.submit 'Salvar Música', class:"btn rounded-btn-nav color-btn mb-5" %>
-            <% end %>
+              <%= simple_form_for [@catalog] do |f| %>
+                <%= f.association :list, collection: List.where(user_id: current_user) %>
+                <%= f.hidden_field :video_id, value: @params %>
+                <%= f.submit 'Salvar Música', class:"btn rounded-btn-nav color-btn mb-5" %>
+              <% end %>
             </div>
           </div>
         </div>
       </div>
-  <% end %>
+    <% end %>
     <div class="form col-6">
       <div class="container w-100">
         <div class="row justify-content-center form-signup">
