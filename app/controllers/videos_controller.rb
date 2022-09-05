@@ -48,6 +48,7 @@ class VideosController < ApplicationController
     if @solo
       redirect_to user_video_path(user_id: current_user, id: @solo.video.youtube_key), status: :see_other
     end
+  end
 
 
   def destroy
