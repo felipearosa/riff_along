@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :videos
   resources :lists
 
-  resources :users, only: [:show]
+  resources :users do
+    resources :videos, only: [:show]
+  end
   resources :catalogs, only: [:create]
 
 end

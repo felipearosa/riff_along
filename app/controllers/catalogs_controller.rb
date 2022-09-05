@@ -23,7 +23,6 @@ class CatalogsController < ApplicationController
     @catalog = Catalog.new
     @catalog.video = @video
     @catalog.list = List.find(@list_id)
-
     if @video.save && @catalog.save
       redirect_to video_path(video_id)
     else

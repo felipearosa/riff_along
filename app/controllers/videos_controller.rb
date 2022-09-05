@@ -20,6 +20,11 @@ class VideosController < ApplicationController
     @video = Video.new
     @catalog = Catalog.new
     @list = List.new
+
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @solos = @user.videos.where(youtube_key: "Fo4746XZgw8").first.solos
+    end
   end
 
   def create
