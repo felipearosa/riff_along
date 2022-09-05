@@ -20,7 +20,6 @@
     <div class="w-100">
       <div class="height-test">
         <div class="font-color">
-<<<<<<< HEAD
             <table class="w-100">
                 <thead>
                     <tr>
@@ -41,17 +40,6 @@
                 <% end %>
                 </tbody>
             </table>
-=======
-          <table class="w-100">
-            <thead>
-              <tr>
-                <th>Mastered</th>
-                <th>Time</th>
-              </tr>
-            </thead>
-            <tbody id="solo-list" data-video-target="list"></tbody>
-          </table>
->>>>>>> master
         </div>
         <%= simple_form_for [@video], data: { video_target: 'soloform' } do |f| %>
               <%= f.hidden_field :video_id, value: @params %>
