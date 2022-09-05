@@ -27,11 +27,40 @@
         <div id="control" data-video-target="control"></div>
     </div>
   </div>
-  <div class="font-color mt-4">
-  <%= simple_form_for [@catalog] do |f| %>
-    <%= f.association :list, collection: List.where(user_id: current_user) %>
-    <%= f.hidden_field :video_id, value: @params %>
-    <%= f.submit 'Salvar Música', class:"btn rounded-btn-nav color-btn mb-5" %>
+
+  <% if current_user && current_user.lists %>
+    <div class="row">
+      <div class="form  col-6">
+        <div class="container w-100">
+          <div class="row justify-content-center form-signup">
+            <div class="col-12">
+              <h1 class="">Save to existing List</h1>
+            <%= simple_form_for [@catalog] do |f| %>
+              <%= f.association :list, collection: List.where(user_id: current_user) %>
+              <%= f.hidden_field :video_id, value: @params %>
+              <%= f.submit 'Salvar Música', class:"btn rounded-btn-nav color-btn mb-5" %>
+            <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
   <% end %>
+    <div class="form col-6">
+      <div class="container w-100">
+        <div class="row justify-content-center form-signup">
+          <div class="col-12">
+            <h1 class="">Save to new List</h1>
+            <%= simple_form_for(@list) do |f| %>
+              <%= f.input :name, label: "List Name" %>
+              <%= f.input :description, label: "List Description" %>
+              <%= f.hidden_field :video_id, value: @params %>
+              <%= f.submit class:"btn color-btn rounded-btn-nav m-4"  %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
+
 </div>
