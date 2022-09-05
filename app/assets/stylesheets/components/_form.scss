@@ -16,9 +16,12 @@
 .color-btn {
   background-color:#580090;
   color: #FFFFFF;
-}
-
-.color-btn:hover {
- background-color: #7106b3;
- color: white;
+    &:hover {
+      background-color: #7106b3;
+      color: white;
+    }
+    &:focus {
+      background-color: #580090;
+      color: white;
+    }
 }
