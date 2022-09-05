@@ -64,8 +64,8 @@ export default class extends Controller {
         this.startTime = "Unloaded"
       }
       row.innerHTML = `
-                <td class="container-td"><div>(mastered_img)</div></td>
-                <td class="container-td"><div>${this.startTime} - ${this.endTime}</div></td>
+                <td class="container-td text-center"><div>(mastered_img)</div></td>
+                <td class="container-td text-center"><div>${this.startTime} - ${this.endTime}</div></td>
                 <td data-action="click->video#deleteRow">❌</td>
             `
       this.listTarget.appendChild(row);
@@ -111,7 +111,7 @@ export default class extends Controller {
 
     this.controlTarget.innerHTML = `
     <div class="d-flex justify-content-around">
-      <button type="button" class="btn color-btn btn-lg btn-block rounded-btn-nav"  data-video-start="${row.dataset.videoStart}" data-video-end="${row.dataset.videoEnd}" data-action="click->video#playSolo">Start Over</button>
+      <button type="button" class="btn color-btn btn-lg rounded-btn-nav"  data-video-start="${row.dataset.videoStart}" data-video-end="${row.dataset.videoEnd}" data-action="click->video#playSolo">Start Over</button>
 
       <button type="button" class="btn btn-dark btn-lg btn-block rounded-btn-nav"  data-video-start="${row.dataset.videoStart}" data-video-end="${row.dataset.videoEnd}" data-action="click->video#loop">Loop</button>
     </div>
