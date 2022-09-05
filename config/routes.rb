@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :videos, only: [:show]
   end
-  resources :catalogs, only: [:create]
+  resources :catalogs, only: [:create, :destroy]
 
   resources :solos, only: [:create, :update, :destroy]
 

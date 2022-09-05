@@ -39,4 +39,10 @@ class CatalogsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    @catalog = Catalog.find(params[:id])
+    @catalog.destroy
+    redirect_to list_path(@catalog.list), status: :see_other
+  end
 end

@@ -35,6 +35,7 @@ class VideosController < ApplicationController
     redirect_to root_path
   end
 
+<<<<<<< HEAD
   def update
     @video = Video.find(params[:id])
     @solos = params[:solos]
@@ -49,6 +50,12 @@ class VideosController < ApplicationController
       redirect_to user_video_path(user_id: current_user, id: @solo.video.youtube_key), status: :see_other
     end
 
+=======
+  def destroy
+    @video = Video.find(params[:id])
+    @video.destroy
+    redirect_to videos_path, status: :see_other
+>>>>>>> master
   end
 
   private
@@ -66,4 +73,5 @@ class VideosController < ApplicationController
       @videos << video_final if video["id"]["kind"] == "youtube#video"
     end
   end
+
 end
