@@ -12,7 +12,7 @@
         <img src="<%= video.image_url %>"/>
         <div class="card-folder-infos">
           <div class="card-music-title">
-            <a href="<%= video_path(video.youtube_key) %>"><h2><%= video.title %></h2></a>
+            <a href="<%= user_video_path(user_id: @user, id: video.youtube_key) %>"><h2><%= video.title %></h2></a>
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@
           <img src="<%= video.image_url %>"/>
           <div class="card-folder-infos">
             <div class="card-music-title">
-              <a href="<%= video_path(video.youtube_key) %>"><h2><%= video.title %></h2></a>
+              <a href="<%= user_video_path(user_id: @user, id: video.youtube_key) %>"><h2><%= video.title %></h2></a>
             </div>
           </div>
         </div>
