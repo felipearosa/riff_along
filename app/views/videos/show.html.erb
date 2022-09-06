@@ -70,9 +70,9 @@
             <div class="row form-signup">
               <div class="col-12 text-center">
                 <h4 class="font-font">To save your riff you must login or sign up <u><strong> BEFORE</strong></u> recording your loops:</h4>
-                <p class="card-product-p mt-3"><%= link_to "Sign Up", new_user_registration_path,   data: {turbo_method: :alert, turbo_confirm: "You will lose any created riffs when signing up, do you want to continue?"}, class:"btn color-btn rounded-btn-nav mx-3" %>
+                <p class="card-product-p mt-3"><%= link_to "Sign Up", new_user_registration_path,   data: {turbo_method: :alert, turbo_confirm: "If you Sign Up now, you will lose all your riffs created so far. Would you like to continue?"}, class:"btn color-btn rounded-btn-nav mx-3" %>
                 or
-                <%= link_to "Login", new_user_session_path, data: {turbo_method: :alert, turbo_confirm: "You will lose any created riffs when logging in, do you want to continue?"}, class: "btn btn-dark rounded-btn-nav mx-3" %>
+                <%= link_to "Login", new_user_session_path, data: {turbo_method: :alert, turbo_confirm: "If you Login now, you will lose all your riffs created so far. Would you like to continue?"}, class: "btn btn-dark rounded-btn-nav mx-3" %>
                 </p>
               </div>
             </div>
@@ -114,7 +114,7 @@
 
       <% end %>
 
-  
+
       </div>
 
 </div>
