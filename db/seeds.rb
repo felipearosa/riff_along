@@ -52,4 +52,24 @@ Video.create(youtube_key: 'rdi7G1hY4-w', title: "Its My Life | Sri Lankan Versio
   Catalog.create(list_id: i, video_id: 10)
 end
 
+5.times do |i|
+  i += 1
+  Solo.create(starting_time: 2.3, ending_time: 3, done: false, video_id: i)
+  Solo.create(starting_time: 4.3, ending_time: 5, done: true, video_id: i)
+  Solo.create(starting_time: 5.3, ending_time: 6.5, done: false, video_id: i)
+  Solo.create(starting_time: 6.8, ending_time: 7.2, done: false, video_id: i)
+  Solo.create(starting_time: 7.9, ending_time: 9, done: true, video_id: i)
+end
+
+Achievement.create(name: "Zakk Wilde", image_url: "zakkwylde.jpg", count: 5)
+Achievement.create(name: "B.B. King ", image_url: "bbking.jpg", count: 10)
+Achievement.create(name: "John Lennon", image_url: "johnlennon.jpg", count: 15)
+Achievement.create(name: "Kurt Kobain", image_url: "monterey.jpg", count: 20)
+Achievement.create(name: "Eric Clapton", image_url: "ericclapton.jpg", count: 25)
+Achievement.create(name: "Jimmy Page", image_url: "jimmypage.jpg", count: 30)
+Achievement.create(name: "Chuck Berry Gibson ES-350T", image_url: "chuckberry.jpg", count: 35)
+Achievement.create(name: "Jimi Hendrix Stratocaster", image_url: "jimmyhendrixwhite.jpg", count: 50)
+Achievement.create(name: "Chuck Berry Maybellene", image_url: "chuckberry2.jpg", count: 45)
+Achievement.create(name: "Jimmi Hendrix Monterey", image_url: "monterey.jpg", count: 50)
+
 puts "Seeding done. Finally."

@@ -42,7 +42,7 @@ export default class extends Controller {
     this.recording = true;
     this.stopTarget.classList.remove('disabled');
     this.startTarget.classList.add('disabled');
-    this.messageTarget.innerHTML = `<p>Recording your solo...</p>`
+    this.messageTarget.innerHTML = `<p class="ms-3 mt-2">Recording your solo <i class="fa-solid fa-microphone-lines"></i></p>`
   }
 
   markStop(){
@@ -64,9 +64,9 @@ export default class extends Controller {
         this.startTime = "Unloaded"
       }
       row.innerHTML = `
-                <td class="container-td text-center"><div>(mastered_img)</div></td>
+                <td class="container-td master-border text-center"><div>(mastered_img)</div></td>
                 <td class="container-td text-center"><div>${this.startTime} - ${this.endTime}</div></td>
-                <td data-action="click->video#deleteRow">❌</td>
+                <td class="time-border" data-action="click->video#deleteRow">❌</td>
             `
       this.listTarget.appendChild(row);
       this.soloNum += 1
@@ -164,7 +164,7 @@ export default class extends Controller {
 
 
   #messageSucess(){
-    this.messageTarget.innerHTML = `<p>Rock on! 🎸</p>`
+    this.messageTarget.innerHTML = `<p class="ms-3 mt-2>Rock on! 🎸</p>`
     setTimeout(() => {
       this.messageTarget.innerHTML = ''
     }, 3000);
