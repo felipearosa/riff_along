@@ -25,5 +25,6 @@
     list_path(@list),
     data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-dark rounded-btn-nav m-2" %>
   <% end %>
-<%= link_to "voltar", user_path(current_user), class: "btn color-btn rounded-btn-nav m-2 p-2 " %>
+
+<%= link_to  '<i class="fa-solid fa-arrow-left"></i>'.html_safe, user_path(current_user), class:'arrow arrow-top'%>
 </div>

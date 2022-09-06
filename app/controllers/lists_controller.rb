@@ -37,7 +37,7 @@ class ListsController < ApplicationController
       end
     else
       if @list.save
-        redirect_to user_video_path(user_id: current_user, id: @video.youtube_key)
+        redirect_to user_path(current_user)
       else
         render :new, status: :unprocessable_entity
       end
