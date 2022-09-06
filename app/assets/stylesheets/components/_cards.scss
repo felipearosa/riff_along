@@ -73,9 +73,7 @@
 .card-folder .card-folder-infos {
   padding: 16px;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  position: relative;
+  gap: 12px;
 }
 
 .card-folder-infos .card-folder-user {
@@ -85,6 +83,9 @@
   width: 40px;
 }
 
+.card-music-title:hover h2 {
+  color: $light-purple;
+}
 
 
 //Achievements folders
