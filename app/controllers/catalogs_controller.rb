@@ -34,7 +34,7 @@ class CatalogsController < ApplicationController
     @catalog.video = @video
     @catalog.list = List.find(@list_id)
     if @video.save && @catalog.save
-      redirect_to video_path(video_id)
+      redirect_to user_video_path(user_id: current_user, id: @video.youtube_key)
     else
       render :new, status: :unprocessable_entity
     end
