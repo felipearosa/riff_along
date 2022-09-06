@@ -41,13 +41,14 @@ class VideosController < ApplicationController
   def update
     @video = Video.find(params[:id])
     @solos = params[:solos]
-    @solos.each do |_key, arr|
-      arr = arr.split(',')
-      next if arr.length == 3
-
-      @solo = Solo.new(starting_time: arr[0], ending_time: arr[1])
-      @solo.video = @video
-      @solo.save!
+    if @solos
+      @solos.each do |_key, arr|
+        arr = arr.split(',')
+        next if arr.length == 3
+        @solo = Solo.new(starting_time: arr[0], ending_time: arr[1])
+        @solo.video = @video
+        @solo.save!
+      end
     end
     redirect_to user_video_path(user_id: current_user, id: @solo.video.youtube_key), status: :see_other if @solo
   end
