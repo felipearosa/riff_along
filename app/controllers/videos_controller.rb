@@ -28,6 +28,9 @@ class VideosController < ApplicationController
       unless @user.videos.where(youtube_key: @params).last.solos.empty?
         @solos = @user.videos.where(youtube_key: @params).last.solos
       end
+    else
+      @video = current_user&.videos&.find_by(youtube_key: @params)
+      redirect_to user_video_path(user_id: current_user.id, id: @params) if @video.present?
     end
   end
 
@@ -41,15 +44,13 @@ class VideosController < ApplicationController
     @solos.each do |_key, arr|
       arr = arr.split(',')
       next if arr.length == 3
+
       @solo = Solo.new(starting_time: arr[0], ending_time: arr[1])
       @solo.video = @video
       @solo.save!
     end
-    if @solo
-      redirect_to user_video_path(user_id: current_user, id: @solo.video.youtube_key), status: :see_other
-    end
+    redirect_to user_video_path(user_id: current_user, id: @solo.video.youtube_key), status: :see_other if @solo
   end
-
 
   def destroy
     @video = Video.find(params[:id])
@@ -72,5 +73,4 @@ class VideosController < ApplicationController
       @videos << video_final if video["id"]["kind"] == "youtube#video"
     end
   end
-
 end
