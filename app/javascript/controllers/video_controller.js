@@ -3,7 +3,7 @@ import YouTubePlayer from 'youtube-player';
 
 // Connects to data-controller="video"
 export default class extends Controller {
-  static targets = [ "start", "stop", "list", "row", "control", "message", "soloform" ]
+  static targets = [ "start", "stop", "list", "row", "control", "message", "soloform", 'master' ]
   static values = {
     slug: String
   }
@@ -17,12 +17,12 @@ export default class extends Controller {
     this.recording == false;
     this.soloNum = 0
     console.log(this. rowTargets)
-    this.rowTargets.forEach((row) => {
-      this.soloformTargets.forEach((form) => {
-        form.insertAdjacentHTML('beforeend', `<input value="${row.dataset.videoStart}, ${row.dataset.videoEnd}, ${row.dataset.soloId}" autocomplete="off" type="hidden" name="solos[time${this.soloNum}]" id="list_video_id"></input>`)
-        this.soloNum += 1
-      })
-    });
+    // this.rowTargets.forEach((row) => {
+    //   this.soloformTargets.forEach((form) => {
+    //     form.insertAdjacentHTML('beforeend', `<input value="${row.dataset.videoStart}, ${row.dataset.videoEnd}, ${row.dataset.soloId}" autocomplete="off" type="hidden" name="solos[time${this.soloNum}]" id="list_video_id"></input>`)
+    //     this.soloNum += 1
+    //   })
+    // });
 
     this.player.on('stateChange', (event) => {
       this.player.getPlayerState().then(data => {
@@ -64,14 +64,14 @@ export default class extends Controller {
         this.startTime = "Unloaded"
       }
       row.innerHTML = `
-                <td class="container-td master-border text-center"><div>(mastered_img)</div></td>
+      <td class="container-td master-border text-center"><div> <img data-video-target="master" data-action="click->video#masterToggle" class ="new unmastered" src="../../../assets/mastered_icon.png"></div></td>
                 <td class="container-td text-center"><div>${this.startTime} - ${this.endTime}</div></td>
                 <td class="time-border" data-action="click->video#deleteRow">❌</td>
             `
       this.listTarget.appendChild(row);
       this.soloNum += 1
       this.soloformTargets.forEach((form) => {
-        form.insertAdjacentHTML('beforeend', `<input value="${this.exactStart}, ${this.exactEnd}" autocomplete="off" type="hidden" name="solos[time${this.soloNum}]" id="list_video_id"></input>`)
+        form.insertAdjacentHTML('beforeend', `<input value="${this.exactStart}, ${this.exactEnd}, unmastered" autocomplete="off" type="hidden" name="solos[time${this.soloNum}]" id="list_video_id"></input>`)
       })
     });
     this.recording = false;
@@ -107,8 +107,6 @@ export default class extends Controller {
     this.#loadSolo(row)
 
     row.classList.add('line-active');
-    console.log(row.dataset.videoStart);
-
     this.controlTarget.innerHTML = `
     <div class="d-flex justify-content-around">
       <button type="button" class="btn color-btn btn-lg rounded-btn-nav"  data-video-start="${row.dataset.videoStart}" data-video-end="${row.dataset.videoEnd}" data-action="click->video#playSolo">Start Over</button>
@@ -126,10 +124,42 @@ export default class extends Controller {
     console.log(row.dataset.videoStart);
 
     this.soloformTargets.forEach((form) => {
-      let formInput = form.querySelector(`input[value="${row.dataset.videoStart}, ${row.dataset.videoEnd}"]`);
+      let formInput = form.querySelector(`input[value="${row.dataset.videoStart}, ${row.dataset.videoEnd}, unmastered"]`);
       formInput.remove();
     })
     row.remove();
+  }
+
+
+  masterToggle(e){
+    const element = e.target;
+    console.log(element);
+    if(element.className.includes("new")){
+      this.#checkMastered(element);
+    }
+    element.classList.toggle("mastered");
+    element.classList.toggle("unmastered");
+  }
+
+
+  #checkMastered(element){
+    let row = element.closest('tr');
+    if(element.className.includes("unmastered")){
+      this.soloformTargets.forEach((form) => {
+        let formInput = form.querySelector(`input[value="${row.dataset.videoStart}, ${row.dataset.videoEnd}, unmastered"]`);
+        formInput.remove();
+
+        form.insertAdjacentHTML('beforeend', `<input value="${row.dataset.videoStart}, ${row.dataset.videoEnd}, mastered" autocomplete="off" type="hidden" name="solos[time${this.soloNum}]" id="list_video_id"></input>`)
+      })
+    } else {
+      this.soloformTargets.forEach((form) => {
+        let formInput = form.querySelector(`input[value="${row.dataset.videoStart}, ${row.dataset.videoEnd}, mastered"]`);
+        formInput.remove();
+
+        form.insertAdjacentHTML('beforeend', `<input value="${row.dataset.videoStart}, ${row.dataset.videoEnd}, unmastered" autocomplete="off" type="hidden" name="solos[time${this.soloNum}]" id="list_video_id"></input>`);
+      })
+
+    }
   }
 
   #loadSolo(element){

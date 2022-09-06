@@ -5,6 +5,19 @@ class SolosController < ApplicationController
   #   # authorize @solo
   # end
 
+  def update
+      @solo = Solo.find(params[:id])
+      if @solo.done
+        @solo.done = false
+      else
+        @solo.done = true
+      end
+
+      if @solo.save
+      else
+        render 'videos/show', status: :unprocessable_entity
+      end
+  end
 
   def destroy
     @solo = Solo.find(params[:id])
