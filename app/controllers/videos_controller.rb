@@ -17,6 +17,7 @@ class VideosController < ApplicationController
 
   def show
     # @solo = Solo.new
+    @achievements = Achievement.all
     @list = List.new
     @params = params[:id]
     # @video = Video.new

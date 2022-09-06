@@ -139,5 +139,30 @@
         </div>
       </div>
     </div>
+
+
+    <div class="title">
+      <a href="">
+        <h2>Achievements</h2>
+      </a>
+    </div>
+
+    <div class="achievements-cards mt-3">
+      <% @achievements.each do |achievement| %>
+      <% if @user.achievements.include? (achievement) %>
+        <div class="achievements-card-folder achievements-card-folder-active">
+      <% else %>
+        <div class="achievements-card-folder">
+      <% end %>
+        <%= image_tag achievement.image_url %>
+        <div class="achievements-card-folder-infos">
+          <div>
+            <p><%= achievement.name %> - Badge Played <%= achievement.count %> Solos</p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    </div>
+
   </div>
 </div>
