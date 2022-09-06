@@ -148,14 +148,14 @@ export default class extends Controller {
       this.soloformTargets.forEach((form) => {
         let formInput = form.querySelector(`input[value="${row.dataset.videoStart}, ${row.dataset.videoEnd}, unmastered"]`);
         formInput.remove();
-
+        this.soloNum += 1
         form.insertAdjacentHTML('beforeend', `<input value="${row.dataset.videoStart}, ${row.dataset.videoEnd}, mastered" autocomplete="off" type="hidden" name="solos[time${this.soloNum}]" id="list_video_id"></input>`)
       })
     } else {
       this.soloformTargets.forEach((form) => {
         let formInput = form.querySelector(`input[value="${row.dataset.videoStart}, ${row.dataset.videoEnd}, mastered"]`);
         formInput.remove();
-
+        this.soloNum += 1
         form.insertAdjacentHTML('beforeend', `<input value="${row.dataset.videoStart}, ${row.dataset.videoEnd}, unmastered" autocomplete="off" type="hidden" name="solos[time${this.soloNum}]" id="list_video_id"></input>`);
       })
 
