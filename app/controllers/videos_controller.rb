@@ -44,9 +44,10 @@ class VideosController < ApplicationController
     @solos = params[:solos]
     if @solos
       @solos.each do |_key, arr|
-        arr = arr.split(',')
-        next if arr.length == 3
+        arr = arr.split(',').map { |word| word.strip }
+        next if arr.length == 4
         @solo = Solo.new(starting_time: arr[0], ending_time: arr[1])
+        @solo.done = arr[2] == 'mastered'
         @solo.video = @video
         @solo.save!
       end
