@@ -50,6 +50,13 @@ class VideosController < ApplicationController
         @solo.video = @video
         @solo.save!
       end
+      achievements = Achievement.all
+      achievements.each do |achievement|
+        unless current_user.achievements.include?(achievement)
+          next if current_user.solos.where(done: true).length < achievement.count
+          current_user.achievements << achievement
+        end
+      end
     end
     redirect_to user_video_path(user_id: current_user, id: @solo.video.youtube_key), status: :see_other if @solo
   end
