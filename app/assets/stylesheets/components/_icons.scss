@@ -1,12 +1,11 @@
 .fa-trash {
-  color: $light-purple;
+  color: $purple;
   font-size: 14px;
 }
 
-.title .fa-trash {
-  color: $purple;
+.fa-trash:hover{
+  color: $light-purple;
 }
-
 
 .fa-pen-to-square {
   color: $purple;
@@ -15,6 +14,10 @@
 
 .fa-trophy, .fa-download, .fa-share-nodes {
   color: #580090;
-  font-size: 50px;
+  font-size: 40px;
   margin-bottom: 20px;
+}
+
+.footer .fa-music {
+  color: #580090;
 }
