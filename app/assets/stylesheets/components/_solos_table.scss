@@ -14,6 +14,13 @@
   background-color: rgba(163, 26, 249, 0.126)
 }
 
+.focus-focus {
+  background-color: rgba(0, 0, 0, 0.571)
+}
+
+.focus-focus:active {
+  background-color:  #f35252;
+}
 
 
 #video-container div p {
@@ -26,7 +33,7 @@
   background-color: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 50px;
-  margin-left: 60px;
+
 }
 
 td.container-td > div {
@@ -51,4 +58,31 @@ td.container-td {
 
 .line-active{
   background-color:#5900909a !important
+}
+
+#player {
+  border-radius: 50px;
+  width: 95%;
+}
+
+
+// iframe[Attributes Style] {
+//   width: 100%;
+//   height: 360px;
+// }
+
+.border-list {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 50px;
+  width: 105%;
+  padding: 40px;
+}
+
+.update-btn {
+  text-align: end;
+  align-items: flex-end;
+  margin-top: 23px;
+  margin-right: 25px;
 }
