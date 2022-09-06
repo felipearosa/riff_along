@@ -32,7 +32,7 @@
   height: 360px;
   background-color: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  border-radius: 50px;
+  border-radius: 30px;
 
 }
 
@@ -57,19 +57,16 @@ td.container-td {
 }
 
 .line-active{
-  background-color:#5900909a !important
+  background-color:#5900909a !important;
+  border-radius: 17px 0 0 17px;
 }
 
 #player {
-  border-radius: 50px;
+  border-radius: 30px;
   width: 95%;
 }
 
 
-// iframe[Attributes Style] {
-//   width: 100%;
-//   height: 360px;
-// }
 
 .border-list {
   overflow: hidden;
@@ -85,4 +82,18 @@ td.container-td {
   align-items: flex-end;
   margin-top: 23px;
   margin-right: 25px;
+}
+
+.master-border {
+  border-radius: 17px 0 0 17px;
+}
+
+.time-border {
+  border-radius: 0px 17px 17px 0px;
+}
+
+input[type="checkbox" i] {
+  background-color: #580090;
+  // width: px;
+  // height: 25px;
 }
