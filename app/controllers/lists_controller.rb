@@ -31,6 +31,7 @@ class ListsController < ApplicationController
       @catalog.video = @video
       @catalog.list = @list
       if @catalog.save
+        raise
         redirect_to user_video_path(user_id: current_user, id: @video.youtube_key)
       else
         render 'videos/show', status: :unprocessable_entity

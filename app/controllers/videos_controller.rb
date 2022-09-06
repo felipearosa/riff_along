@@ -17,10 +17,10 @@ class VideosController < ApplicationController
 
   def show
     # @solo = Solo.new
+    @list = List.new
     @params = params[:id]
     # @video = Video.new
     @catalog = Catalog.new
-    @list = List.new
     if params[:user_id]
       @user = User.find(params[:user_id])
       @video = @user.videos.where(youtube_key: @params).last
