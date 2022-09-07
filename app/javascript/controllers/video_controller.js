@@ -17,12 +17,13 @@ export default class extends Controller {
     this.recording == false;
     this.soloNum = 0
     console.log(this. rowTargets)
-    // this.rowTargets.forEach((row) => {
-    //   this.soloformTargets.forEach((form) => {
-    //     form.insertAdjacentHTML('beforeend', `<input value="${row.dataset.videoStart}, ${row.dataset.videoEnd}, ${row.dataset.soloId}" autocomplete="off" type="hidden" name="solos[time${this.soloNum}]" id="list_video_id"></input>`)
-    //     this.soloNum += 1
-    //   })
-    // });
+    this.rowTargets.forEach((row) => {
+      this.soloformTargets.forEach((form) => {
+        let img = row.querySelector('img').className;
+        form.insertAdjacentHTML('beforeend', `<input value="${row.dataset.videoStart}, ${row.dataset.videoEnd}, ${row.dataset.soloId}, ${img}" autocomplete="off" type="hidden" name="solos[time${this.soloNum}]" id="list_video_id"></input>`);
+        this.soloNum += 1;
+      })
+    });
 
     this.player.on('stateChange', (event) => {
       this.player.getPlayerState().then(data => {
