@@ -26,8 +26,10 @@ class VideosController < ApplicationController
       @user = User.find(params[:user_id])
       @video = @user.videos.where(youtube_key: @params).last
       # Needs refactoring
-      unless @user.videos.where(youtube_key: @params).last.solos.empty?
-        @solos = @user.videos.where(youtube_key: @params).last.solos
+      if @user.videos.where(youtube_key: @params).last
+        unless @user.videos.where(youtube_key: @params).last.solos.empty?
+          @solos = @user.videos.where(youtube_key: @params).last.solos
+        end
       end
     else
       @video = current_user&.videos&.find_by(youtube_key: @params)
