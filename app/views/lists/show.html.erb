@@ -14,7 +14,9 @@
               <h2><%= catalog.video.title %></h2>
             </a>
           </div>
-          <%= link_to "", catalog_path(catalog), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "fa-solid fa-trash" %>
+          <% if @user == current_user %>
+            <%= link_to "", catalog_path(catalog), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "fa-solid fa-trash" %>
+          <% end %>
         </div>
       </div>
     <% end %>

@@ -60,6 +60,7 @@ class ListsController < ApplicationController
   end
 
   def show
+    @user = @list.user
   end
 
   def destroy
