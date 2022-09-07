@@ -14,6 +14,13 @@ class SolosController < ApplicationController
       end
 
       if @solo.save
+        achievements = Achievement.all
+        achievements.each do |achievement|
+          unless current_user.achievements.include?(achievement)
+            next if current_user.solos.where(done: true).length < achievement.count - 1
+            current_user.achievements << achievement
+          end
+        end
       else
         render 'videos/show', status: :unprocessable_entity
       end

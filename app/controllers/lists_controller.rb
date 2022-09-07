@@ -9,20 +9,25 @@ class ListsController < ApplicationController
     @list = List.new(list_params)
     @list.user = current_user
     if params[:list][:video_id]
-      video_id = CGI.escape(params[:list][:video_id])
-      url = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=#{video_id}&key=#{ENV.fetch('YOUTUBE_API')}"
-      videos_serialized = URI.open(url).read
-      videos_info = JSON.parse(videos_serialized)["items"][0]
-      video_title = videos_info["snippet"]["title"]
-      video_image_url = videos_info["snippet"]["thumbnails"]["medium"]["url"]
-      @video = Video.new(title: video_title, image_url: video_image_url, youtube_key: video_id)
-      @video.save!
+      @video = Video.find(params[:list][:video])
+      unless @video
+        video_id = CGI.escape(params[:list][:video_id])
+        url = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=#{video_id}&key=#{ENV.fetch('YOUTUBE_API')}"
+        videos_serialized = URI.open(url).read
+        videos_info = JSON.parse(videos_serialized)["items"][0]
+        video_title = videos_info["snippet"]["title"]
+        video_image_url = videos_info["snippet"]["thumbnails"]["medium"]["url"]
+        @video = Video.new(title: video_title, image_url: video_image_url, youtube_key: video_id)
+        @video.save!
+      end
       if params[:solos]
         @test = []
         @solos = params[:solos]
         @solos.each do |_key, arr|
-          arr = arr.split(',')
+          arr = arr.split(',').map { |word| word.strip }
+          next if arr.length == 4
           @solo = Solo.new(starting_time: arr[0], ending_time: arr[1])
+          @solo.done = arr[2] == 'mastered'
           @solo.video = @video
           @solo.save!
         end
