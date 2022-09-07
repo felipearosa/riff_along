@@ -67,7 +67,7 @@ export default class extends Controller {
       row.innerHTML = `
       <td class="container-td master-border text-center"><div> <img data-video-target="master" data-action="click->video#masterToggle" class ="new unmastered" src="../../../assets/mastered_icon.png"></div></td>
                 <td class="container-td text-center"><div>${this.startTime} - ${this.endTime}</div></td>
-                <td class="time-border" data-action="click->video#deleteRow">❌</td>
+                <td class="time-border" data-action="click->video#deleteRow"><div>❌</div></td>
             `
       this.listTarget.appendChild(row);
       this.soloNum += 1
