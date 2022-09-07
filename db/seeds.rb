@@ -68,7 +68,7 @@ Achievement.create(name: "Kurt Kobain", image_url: "monterey.jpg", count: 20)
 Achievement.create(name: "Eric Clapton", image_url: "ericclapton.jpg", count: 25)
 Achievement.create(name: "Jimmy Page", image_url: "jimmypage.jpg", count: 30)
 Achievement.create(name: "Chuck Berry Gibson ES-350T", image_url: "chuckberry.jpg", count: 35)
-Achievement.create(name: "Jimi Hendrix Stratocaster", image_url: "jimmyhendrixwhite.jpg", count: 50)
+Achievement.create(name: "Jimi Hendrix Stratocaster", image_url: "jimmyhendrixwhite.jpg", count: 40)
 Achievement.create(name: "Chuck Berry Maybellene", image_url: "chuckberry2.jpg", count: 45)
 Achievement.create(name: "Jimmi Hendrix Monterey", image_url: "monterey.jpg", count: 50)
 
