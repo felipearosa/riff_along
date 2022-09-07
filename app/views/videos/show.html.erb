@@ -47,7 +47,7 @@
                       </div>
                     </td>
                     <td class="container-td text-center"><div><%= "%02d:%02d" % [solo.starting_time.to_i/60%60, solo.starting_time.to_i%60] %> - <%= "%02d:%02d" % [solo.ending_time.to_i/60%60, solo.ending_time.to_i%60] %></div></td>
-                    <td class="time-border"><%= link_to "❌", solo_path(solo),  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%></td>
+                    <td class="time-border"> <div><%= link_to "❌", solo_path(solo),  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%> </div></td>
                   </tr>
                   <% end %>
                 <% end %>
