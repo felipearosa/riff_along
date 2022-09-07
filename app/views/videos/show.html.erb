@@ -47,7 +47,9 @@
                       </div>
                     </td>
                     <td class="container-td text-center"><div><%= "%02d:%02d" % [solo.starting_time.to_i/60%60, solo.starting_time.to_i%60] %> - <%= "%02d:%02d" % [solo.ending_time.to_i/60%60, solo.ending_time.to_i%60] %></div></td>
-                    <td class="time-border"><%= link_to "❌", solo_path(solo),  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%></td>
+                      <% if @video && current_user == @user %>
+                       <td class="time-border"><%= link_to "❌", solo_path(solo),  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%></td>
+                      <% end %>
                   </tr>
                   <% end %>
                 <% end %>
@@ -56,9 +58,8 @@
 
             </div>
         </div>
-
         <div class="update-btn">
-        <% if @video %>
+        <% if @video && current_user == @user %>
           <%= simple_form_for [@video], data: { video_target: 'soloform' } do |f| %>
                 <%= f.hidden_field :video_id, value: @params %>
                 <%= f.submit 'Update Solos', class:"btn rounded-btn-nav color-btn" %>
@@ -86,47 +87,45 @@
         </div>
 
   <% else %>
-    <div class="form col-6">
-      <div class="container w-100">
-        <div class="row justify-content-center form-signup">
-          <div class="col-12">
-            <h1 class="font-font">Save to new List</h1>
-            <%= simple_form_for [@list], data: { video_target: 'soloform'} do |f| %>
-              <%= f.input :name, label: "List Name" %>
-              <%= f.input :description, label: "List Description" %>
-              <%= f.hidden_field :video_id, value: @params %>
-              <% if @video %>
-               <%= f.hidden_field :video, value: @video.id %>
-              <% end %>
-              <%= f.submit class:"btn color-btn rounded-btn-nav my-4"  %>
-            <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% if current_user && !current_user.lists.empty? %>
+    <% if @video && current_user == @user %>
         <div class="form col-6">
-          <div class="container w-100">
-            <div class="row justify-content-center border-list">
-              <div class="col-12">
-                <h1 class="font-font">Save to existing List</h1>
-              <%= simple_form_for [@catalog], data: { video_target: 'soloform' } do |f| %>
-                <%= f.association :list, collection: List.where(user_id: current_user),   include_blank: "Choose Your List..." %>
+        <div class="container w-100">
+          <div class="row justify-content-center form-signup">
+            <div class="col-12">
+              <h1 class="font-font">Save to new List</h1>
+              <%= simple_form_for [@list], data: { video_target: 'soloform'} do |f| %>
+                <%= f.input :name, label: "List Name" %>
+                <%= f.input :description, label: "List Description" %>
                 <%= f.hidden_field :video_id, value: @params %>
                 <% if @video %>
-                  <%= f.hidden_field :video, value: @video.id %>
+                <%= f.hidden_field :video, value: @video.id %>
                 <% end %>
-                <%= f.submit 'Save Song', class:"btn rounded-btn-nav color-btn my-4" %>
+                <%= f.submit class:"btn color-btn rounded-btn-nav my-4"  %>
               <% end %>
               </div>
             </div>
           </div>
         </div>
+      <% if current_user && !current_user.lists.empty? %>
+        <div class="form col-6">
+          <div class="container w-100">
+            <div class="row justify-content-center border-list">
+              <div class="col-12">
+                <h1 class="font-font">Save to existing List</h1>
+                <%= simple_form_for [@catalog], data: { video_target: 'soloform' } do |f| %>
+                  <%= f.association :list, collection: List.where(user_id: current_user),   include_blank: "Choose Your List..." %>
+                  <%= f.hidden_field :video_id, value: @params %>
+                  <% if @video %>
+                    <%= f.hidden_field :video, value: @video.id %>
+                  <% end %>
+                  <%= f.submit 'Save Song', class:"btn rounded-btn-nav color-btn my-4" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
       <% end %>
-
-      <% end %>
-
-
-      </div>
-
+    <% end %>
+  <% end %>
+  </div>
 </div>
