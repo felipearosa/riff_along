@@ -3,7 +3,7 @@ import YouTubePlayer from 'youtube-player';
 
 // Connects to data-controller="video"
 export default class extends Controller {
-  static targets = [ "start", "stop", "list", "row", "control", "message", "soloform", 'master' ]
+  static targets = [ "start", "stop", "list", "row", "control", "message", "soloform", 'master', 'img' ]
   static values = {
     slug: String
   }
@@ -65,7 +65,7 @@ export default class extends Controller {
         this.startTime = "Unloaded"
       }
       row.innerHTML = `
-      <td class="container-td master-border text-center"><div> <img data-video-target="master" data-action="click->video#masterToggle" class ="new unmastered" src="../../../assets/mastered_icon.png"></div></td>
+      <td class="container-td master-border text-center"><div> <img data-video-target="master" data-action="click->video#masterToggle" class ="new unmastered" src="${this.imgTarget.dataset.value}"></div></td>
                 <td class="container-td text-center"><div>${this.startTime} - ${this.endTime}</div></td>
                 <td class="time-border" data-action="click->video#deleteRow"><div>❌</div></td>
             `

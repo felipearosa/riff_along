@@ -41,6 +41,7 @@
                   <tr data-action="click->video#setRowActive" data-video-target="row" data-video-start="<%= solo.starting_time %>" data-video-end="<%= solo.ending_time %>" data-solo-id="<%= solo.id %>">
                     <td class="container-td master-border text-center">
                       <div>
+                        <div class="d-none" data-video-target="img" data-value="<%= image_path("mastered_icon.png") %>"></div>
                         <%= link_to solo_path(solo),  data: {turbo_method: :patch} do%>
                           <%= image_tag("mastered_icon.png", class: solo.done ? "mastered" : "unmastered" , data: { video_target: 'master', action: 'click->video#masterToggle' }) %>
                         <% end %>
