@@ -73,61 +73,63 @@
       </div>
   </div>
 
-  <div class="row">
-    <% if @video && current_user == @user %>
-      <% unless current_user %>
-        <div class="form col-6">
-              <div class="container">
-                <div class="row form-signup">
-                  <div class="col-12 text-center">
-                    <h4 class="font-font">To save your riff you must login or sign up <strong> before</strong> recording your loops:</h4>
-                    <p class="card-product-p mt-3"><%= link_to "Sign Up", new_user_registration_path,   data: {turbo_method: :alert, turbo_confirm: "If you Sign Up now, you will lose all your riffs created so far. Would you like to continue?"}, class:"btn color-btn rounded-btn-nav mx-3" %>
-                    or
-                    <%= link_to "Login", new_user_session_path, data: {turbo_method: :alert, turbo_confirm: "If you Login now, you will lose all your riffs created so far. Would you like to continue?"}, class: "btn btn-dark rounded-btn-nav mx-3" %>
-                    </p>
-                  </div>
-                </div>
+<div class="row">
+  <% unless current_user %>
+    <% if !@user  %>
+      <div class="form col-6">
+          <div class="container">
+            <div class="row form-signup">
+              <div class="col-12 text-center">
+                <h4 class="font-font">To save your riff you must login or sign up <strong> before</strong> recording your loops:</h4>
+                <p class="card-product-p mt-3"><%= link_to "Sign Up", new_user_registration_path,   data: {turbo_method: :alert, turbo_confirm: "If you Sign Up now, you will lose all your riffs created so far. Would you like to continue?"}, class:"btn color-btn rounded-btn-nav mx-3" %>
+                or
+                <%= link_to "Login", new_user_session_path, data: {turbo_method: :alert, turbo_confirm: "If you Login now, you will lose all your riffs created so far. Would you like to continue?"}, class: "btn btn-dark rounded-btn-nav mx-3" %>
+                </p>
               </div>
             </div>
-      <% else %>
+          </div>
+        </div>
+      <% end %>
+  <% else %>
+    <% if @video && current_user == @user %>
+        <div class="form col-6">
+        <div class="container w-100">
+          <div class="row justify-content-center form-signup">
+            <div class="col-12">
+              <h1 class="font-font">Save to new List</h1>
+              <%= simple_form_for [@list], data: { video_target: 'soloform'} do |f| %>
+                <%= f.input :name, label: "List Name" %>
+                <%= f.input :description, label: "List Description" %>
+                <%= f.hidden_field :video_id, value: @params %>
+                <% if @video %>
+                <%= f.hidden_field :video, value: @video.id %>
+                <% end %>
+                <%= f.submit class:"btn color-btn rounded-btn-nav my-4"  %>
+              <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% if current_user && !current_user.lists.empty? %>
         <div class="form col-6">
           <div class="container w-100">
-            <div class="row justify-content-center form-signup">
+            <div class="row justify-content-center border-list">
               <div class="col-12">
-                <h1 class="font-font">Save to new List</h1>
-                <%= simple_form_for [@list], data: { video_target: 'soloform'} do |f| %>
-                  <%= f.input :name, label: "List Name" %>
-                  <%= f.input :description, label: "List Description" %>
+                <h1 class="font-font">Save to existing List</h1>
+                <%= simple_form_for [@catalog], data: { video_target: 'soloform' } do |f| %>
+                  <%= f.association :list, collection: List.where(user_id: current_user),   include_blank: "Choose Your List..." %>
                   <%= f.hidden_field :video_id, value: @params %>
                   <% if @video %>
                     <%= f.hidden_field :video, value: @video.id %>
                   <% end %>
-                  <%= f.submit class:"btn color-btn rounded-btn-nav my-4"  %>
+                  <%= f.submit 'Save Song', class:"btn rounded-btn-nav color-btn my-4" %>
                 <% end %>
               </div>
             </div>
           </div>
         </div>
-        <% if current_user && !current_user.lists.empty? %>
-          <div class="form col-6">
-            <div class="container w-100">
-              <div class="row justify-content-center border-list">
-                <div class="col-12">
-                  <h1 class="font-font">Save to existing List</h1>
-                  <%= simple_form_for [@catalog], data: { video_target: 'soloform' } do |f| %>
-                    <%= f.association :list, collection: List.where(user_id: current_user),   include_blank: "Choose Your List..." %>
-                    <%= f.hidden_field :video_id, value: @params %>
-                    <% if @video %>
-                      <%= f.hidden_field :video, value: @video.id %>
-                    <% end %>
-                    <%= f.submit 'Save Song', class:"btn rounded-btn-nav color-btn my-4" %>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
       <% end %>
     <% end %>
+  <% end %>
   </div>
 </div>
