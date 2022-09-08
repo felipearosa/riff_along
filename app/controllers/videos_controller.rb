@@ -56,7 +56,7 @@ class VideosController < ApplicationController
       achievements = Achievement.all
       achievements.each do |achievement|
         unless current_user.achievements.include?(achievement)
-          next if current_user.solos.where(done: true).length < achievement.count - 1
+          next if current_user.solos.where(done: true).length < achievement.count
           current_user.achievements << achievement
         end
       end

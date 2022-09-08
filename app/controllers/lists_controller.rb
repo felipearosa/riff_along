@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
   before_action :set_list, only: %i[show edit update destroy]
+  skip_before_action :authenticate_user!, only: %i[show]
 
   def new
     @list = List.new
@@ -9,7 +10,7 @@ class ListsController < ApplicationController
     @list = List.new(list_params)
     @list.user = current_user
     if params[:list][:video_id]
-      @video = Video.find(params[:list][:video])
+      @video = Video.find(params[:list][:video]) if params[:list][:video]
       unless @video
         video_id = CGI.escape(params[:list][:video_id])
         url = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=#{video_id}&key=#{ENV.fetch('YOUTUBE_API')}"
@@ -32,9 +33,11 @@ class ListsController < ApplicationController
           @solo.save!
         end
       end
+
       @catalog = Catalog.new
       @catalog.video = @video
       @catalog.list = @list
+
       if @catalog.save
         redirect_to user_video_path(user_id: current_user, id: @video.youtube_key)
       else
@@ -59,6 +62,7 @@ class ListsController < ApplicationController
   end
 
   def show
+    @user = @list.user
   end
 
   def destroy
