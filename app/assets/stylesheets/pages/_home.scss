@@ -157,7 +157,7 @@ body {
   padding: 100px;
   align-items: center;
   justify-content: space-between;
-  height: 55vh;
+  // height: 55vh;
 }
 
 .demo-function img {
@@ -189,7 +189,7 @@ body {
   font-size: 16px;
   line-height: 1.7;
   color: rgb(0, 0, 0);
-  height: 50vh;
+  // height: 50vh;
   align-items: center;
   justify-content: center;
 
@@ -214,15 +214,101 @@ body {
 }
 
 
-
-@media (max-width: 1000px) {
+@media (max-width: 1300px) {
   .demo-function {
+    flex-direction: column;
+    padding: 0;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
+  .demo-items{
+    margin: 0;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+  .demo-function img {
+    margin-right: 0;
+  }
+  .center-page {
+    height: 130vh;
+    text-align: center;
+  }
 
+  .page-items {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 992px) {
+  .demo-function {
+    flex-direction: column;
+    padding: 0;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
+  .demo-items{
+    margin: 0;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+  .demo-function img {
+    margin-right: 0;
+  }
+  .center-page {
+    height: 130vh;
+    text-align: center;
+
+  }
+  .page-items {
+    flex-direction: column;
   }
 }
 
 @media (max-width: 768px) {
   .demo-function {
     flex-direction: column;
+    padding: 0;
+    // height: 100vh;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
   }
+  .demo-items{
+    margin: 0;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .center-page {
+    height: 130vh;
+    text-align: center;
+    margin: 50px 0;
+    margin-top: 75px;
+  }
+
+  .page-items {
+    flex-direction: column;
+  }
+
+  .demo-function img {
+    margin-right: 0;
+    max-width: 300px;
+
+  }
+
+
 }
