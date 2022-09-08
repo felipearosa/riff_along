@@ -11,8 +11,8 @@ class ListsController < ApplicationController
     @list = List.new(list_params)
     @list.user = current_user
     authorize @list
+    @video = Video.find(params[:list][:video]) if params[:list][:video] != ''
     if params[:list][:video_id]
-      @video = Video.find(params[:list][:video]) if params[:list][:video] != ''
       unless @video
         video_id = CGI.escape(params[:list][:video_id])
         url = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=#{video_id}&key=#{ENV.fetch('YOUTUBE_API')}"
@@ -35,7 +35,6 @@ class ListsController < ApplicationController
           @solo.save!
         end
       end
-
 
       @catalog = Catalog.new
       @catalog.video = @video
