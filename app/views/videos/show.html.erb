@@ -64,7 +64,7 @@
         </div>
         <div class="update-btn">
         <% if @video && current_user == @user %>
-          <%= simple_form_for [@video], data: { video_target: 'soloform' } do |f| %>
+          <%= simple_form_for [@video], data: { video_target: 'soloform' }, url: "/videos/#{@video_id}", method: :patch do |f| %>
                 <%= f.hidden_field :video_id, value: @params %>
                 <%= f.submit 'Update Solos', class:"btn rounded-btn-nav color-btn" %>
           <% end %>
@@ -93,7 +93,7 @@
       <% end %>
   <% else %>
     <% if @video %>
-      <% if current_user == @user %>
+      <% if current_user == @user || !@user %>
         <div class="form col-6">
         <div class="container w-100">
           <div class="row justify-content-center form-signup">
