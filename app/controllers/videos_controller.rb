@@ -5,6 +5,7 @@ class VideosController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
+    @videos = policy_scope(Video)
     @videos = []
     if params[:query].present?
       query = CGI.escape(params[:query])
@@ -20,11 +21,11 @@ class VideosController < ApplicationController
     @achievements = Achievement.all
     @list = List.new
     @params = params[:id]
-    # @video = Video.new
     @catalog = Catalog.new
     if params[:user_id]
       @user = User.find(params[:user_id])
       @video = @user.videos.where(youtube_key: @params).last
+      @video_id = @video.id
       # Needs refactoring
       if @user.videos.where(youtube_key: @params).last
         unless @user.videos.where(youtube_key: @params).last.solos.empty?
@@ -35,14 +36,13 @@ class VideosController < ApplicationController
       @video = current_user&.videos&.find_by(youtube_key: @params)
       redirect_to user_video_path(user_id: current_user.id, id: @params) if @video.present?
     end
-  end
-
-  def create
-    redirect_to root_path
+    @video = Video.new(youtube_key: @params)
+    authorize @video
   end
 
   def update
     @video = Video.find(params[:id])
+    authorize @video
     @solos = params[:solos]
     if @solos
       @solos.each do |_key, arr|
@@ -66,6 +66,7 @@ class VideosController < ApplicationController
 
   def destroy
     @video = Video.find(params[:id])
+    authorize @video
     @video.destroy
     redirect_to videos_path, status: :see_other
   end

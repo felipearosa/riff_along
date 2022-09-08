@@ -11,7 +11,7 @@ class CatalogsController < ApplicationController
 
   def create
     @list_id = params[:catalog][:list_id]
-    @video = Video.find(params[:catalog][:video]) if params[:catalog][:video]
+    @video = Video.find(params[:catalog][:video]) if params[:catalog][:video] != ''
     unless @video
       video_id = CGI.escape(params[:catalog][:video_id])
       url = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=#{video_id}&key=#{ENV.fetch('YOUTUBE_API')}"
@@ -28,6 +28,7 @@ class CatalogsController < ApplicationController
       redirect_to user_video_path(user_id: current_user, id: @video.youtube_key)
     else
       @catalog.list = List.find(@list_id)
+      authorize @catalog
       if @catalog.save!
         if params[:solos]
           @test = []
@@ -48,6 +49,7 @@ class CatalogsController < ApplicationController
 
   def destroy
     @catalog = Catalog.find(params[:id])
+    authorize @catalog
     @catalog.destroy
     redirect_to list_path(@catalog.list), status: :see_other
   end

@@ -4,13 +4,15 @@ class ListsController < ApplicationController
 
   def new
     @list = List.new
+    authorize @list
   end
 
   def create
     @list = List.new(list_params)
     @list.user = current_user
+    authorize @list
     if params[:list][:video_id]
-      @video = Video.find(params[:list][:video]) if params[:list][:video]
+      @video = Video.find(params[:list][:video]) if params[:list][:video] != ''
       unless @video
         video_id = CGI.escape(params[:list][:video_id])
         url = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=#{video_id}&key=#{ENV.fetch('YOUTUBE_API')}"
@@ -34,6 +36,7 @@ class ListsController < ApplicationController
         end
       end
 
+
       @catalog = Catalog.new
       @catalog.video = @video
       @catalog.list = @list
@@ -53,21 +56,23 @@ class ListsController < ApplicationController
   end
 
   def edit
+    authorize @list
   end
 
   def update
+    authorize @list
     @list.update(list_params)
-
     redirect_to list_path(@list)
   end
 
   def show
     @user = @list.user
+    authorize @user
   end
 
   def destroy
+    authorize @list
     @list.destroy
-
     redirect_to user_path(current_user), status: :see_other
   end
 
