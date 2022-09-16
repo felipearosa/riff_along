@@ -65,3 +65,43 @@
 .nav-item {
   padding-right: 130px;
 }
+
+@media(max-width:1300px){
+  .nav-item{
+    padding-right: 0;
+  }
+}
+
+@media(max-width:992px){
+  .form-nav{
+    width: 400px;
+  }
+
+  .navbar-brand{
+    padding-left: 20px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .navbar-dark{
+    position:fixed;
+    right:20px
+  }
+
+  .navbar-brand {
+    padding-left: 0;
+  }
+
+  .container-fluid > form{
+    flex-grow: 1;
+  }
+
+  .navbar > .container-fluid{
+    justify-content: flex-start;
+  }
+
+  .form-nav{
+    width: 80%;
+  }
+}
