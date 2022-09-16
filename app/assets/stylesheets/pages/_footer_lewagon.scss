@@ -27,10 +27,16 @@
 
 .privacy{
   font-size:14px !important;
+  margin: 0px 20px;
 }
 
 @media (max-width: 768px) {
   .footer-copyright {
     font-size: 12px;
+  }
+
+  .privacy{
+    font-size: 12px !important;
+    margin: 0 !important;
   }
 }
