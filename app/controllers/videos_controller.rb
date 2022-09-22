@@ -11,7 +11,7 @@ class VideosController < ApplicationController
       query = CGI.escape(params[:query])
       url = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=#{query}&key=#{ENV.fetch('YOUTUBE_API')}"
     else
-      url = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=Jimi+Hendrix&key=#{ENV.fetch('YOUTUBE_API')}"
+      url = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=Jimi+Hendrix+songs&key=#{ENV.fetch('YOUTUBE_API')}"
     end
     loop_videos_search(url)
   end
@@ -26,6 +26,7 @@ class VideosController < ApplicationController
       @user = User.find(params[:user_id])
       @video = @user.videos.where(youtube_key: @params).last
       @video_id = @video.id
+      @video_title = @video.title
       # @video_id = @video.id
       # Needs refactoring
       if @user.videos.where(youtube_key: @params).last

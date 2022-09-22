@@ -1,0 +1,25 @@
+<% if request.original_fullpath.include? ('/videos') %>
+  <% if request.original_fullpath.include? ('/users/') %>
+  <title><%= @video_title %></title>
+  <% elsif request.original_fullpath.include? ('?query') %>
+    <% if params[:query].nil? || params[:query] == "" %>
+      <title>Jimi - The RiffAlong</title>
+    <% elsif %>
+      <title><%= params[:query] %> - The RiffAlong</title>
+    <% end %>
+  <% else %>
+    <title>Video - The RiffAlong</title>
+  <% end %>
+<% elsif request.original_fullpath.include? ('/users') %>
+  <% if request.original_fullpath.include? ('sign_up') %>
+    <title>Sign Up - The RiffAlong</title>
+  <% elsif request.original_fullpath.include? ('/sign_in') %>
+    <title>Login - The RiffAlong</title>
+  <% else %>
+    <title><%= @user.first_name %>'s Lists</title>
+  <% end %>
+<% elsif request.original_fullpath.include? ('/lists') %>
+  <title><%= @list.name %> list - The RiffAlong</title>
+<% else %>
+  <title>The RiffAlong</title>
+<% end %>
