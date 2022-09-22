@@ -1,0 +1,15 @@
+<% if request.original_fullpath.include? ('/videos') %>
+  <% if request.original_fullpath.include? ('/users/') %>
+  <title><%= @video_title %></title>
+  <% elsif request.original_fullpath.include? ('?query') %>
+    <% if params[:query].nil? || params[:query] == "" %>
+      <title>Jimi - The RiffAlong</title>
+    <% elsif %>
+      <title><%= params[:query] %> - The RiffAlong</title>
+    <% end %>
+  <% else %>
+    <title>Video - The RiffAlong</title>
+  <% end %>
+<% else %>
+  <title>The RiffAlong</title>
+<% end %>
