@@ -11,7 +11,13 @@
     <title>Video - The RiffAlong</title>
   <% end %>
 <% elsif request.original_fullpath.include? ('/users') %>
-  <title><%= @user.first_name %>'s Lists</title>
+  <% if request.original_fullpath.include? ('sign_up') %>
+    <title>Sign Up - The RiffAlong</title>
+  <% elsif request.original_fullpath.include? ('/sign_in') %>
+    <title>Login - The RiffAlong</title>
+  <% else %>
+    <title><%= @user.first_name %>'s Lists</title>
+  <% end %>
 <% elsif request.original_fullpath.include? ('/lists') %>
   <title><%= @list.name %> list - The RiffAlong</title>
 <% else %>
