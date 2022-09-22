@@ -2,3 +2,6 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "bootstrap"
+import { runGTM } from './src/rungtm.js'
+
+runGTM();
