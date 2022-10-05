@@ -102,9 +102,14 @@
     </div> %>
 
     <% if @solos %>
+
+      <% text = ''
+      3.times {text += "-----------------------------------\n"}
+            %>
+
       <% @solos.each do |solo|  %>
         <%= simple_form_for [solo], method: :patch do |f| %>
-              <%= f.input :riff, as: :text, input_html: { rows: 6, value: "nivoewnoievwoe/nvoewao\nvonienvoiewsonei" } %>
+              <%= f.input :riff, as: :text, input_html: { rows: 6, value: text } %>
               <%= f.submit 'Update Solo', class:"btn rounded-btn-nav color-btn" %>
         <% end %>
       <% end %>
