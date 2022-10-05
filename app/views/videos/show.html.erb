@@ -104,7 +104,7 @@
     <% if @solos %>
       <% @solos.each do |solo|  %>
         <%= simple_form_for [solo], method: :patch do |f| %>
-              <%= f.input :riff, as: :text, input_html: { rows: 6 } %>
+              <%= f.input :riff, as: :text, input_html: { rows: 6, value: "nivoewnoievwoe/nvoewao\nvonienvoiewsonei" } %>
               <%= f.submit 'Update Solo', class:"btn rounded-btn-nav color-btn" %>
         <% end %>
       <% end %>

@@ -6,6 +6,7 @@ class SolosController < ApplicationController
   # end
 
   def update
+    raise
     @solo = Solo.find(params[:id])
     if @solo.done
       @solo.done = false
