@@ -108,8 +108,8 @@
             %>
 
       <% @solos.each do |solo|  %>
-        <%= simple_form_for [solo], method: :patch do |f| %>
-              <%= f.input :riff, as: :text, input_html: { rows: 6, value: text } %>
+        <%= simple_form_for [solo], data: { video_target: 'riff_table' },method: :patch do |f| %>
+              <%= f.input :riff, as: :text, input_html: { rows: 6, value: text, data: { action:"keypress->video#riffEdit" }}  %>
               <%= f.submit 'Update Solo', class:"btn rounded-btn-nav color-btn" %>
         <% end %>
       <% end %>

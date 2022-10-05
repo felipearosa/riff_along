@@ -3,7 +3,7 @@ import YouTubePlayer from 'youtube-player';
 
 // Connects to data-controller="video"
 export default class extends Controller {
-  static targets = [ "start", "stop", "list", "row", "control", "message", "soloform", 'master', 'img' ]
+  static targets = [ "start", "stop", "list", "row", "control", "message", "soloform", 'master', 'img', 'riff_table' ]
   static values = {
     slug: String
   }
@@ -140,6 +140,12 @@ export default class extends Controller {
     }
     element.classList.toggle("mastered");
     element.classList.toggle("unmastered");
+  }
+
+  riffEdit(e){
+    let s = e.target.selectionStart;
+    e.target.value = e.target.value.substr(0, s) + e.target.value.substr(s + 1);
+    e.target.selectionEnd = s;
   }
 
 
