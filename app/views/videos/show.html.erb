@@ -100,16 +100,10 @@
       </div>
 
     </div>
-
-    <% if @solos %>
-      <% @solos.each do |solo|  %>
-        <%= simple_form_for [solo], data: { video_target: 'riff_table' },method: :patch do |f| %>
+        <%= simple_form_for [@solo], data: { video_target: 'riffTable' } ,method: :patch, html: { class: 'd-none' } do |f| %>
               <%= f.input :riff, as: :text, input_html: { rows: 6 }  %>
               <%= f.submit 'Update Solo', class:"btn rounded-btn-nav color-btn" %>
         <% end %>
-      <% end %>
-    <% end %>
-
   </div>
 
 

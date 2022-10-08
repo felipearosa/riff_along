@@ -3,7 +3,7 @@ import YouTubePlayer from 'youtube-player';
 
 // Connects to data-controller="video"
 export default class extends Controller {
-  static targets = [ "start", "stop", "list", "row", "control", "message", "soloform", 'master', 'img', 'riff_table' ]
+  static targets = [ "start", "stop", "list", "row", "control", "message", "soloform", 'master', 'img', 'riffTable' ]
   static values = {
     slug: String
   }
@@ -108,6 +108,7 @@ export default class extends Controller {
     this.#loadSolo(row)
 
     row.classList.add('line-active');
+    // Set buttons to start over and loop
     this.controlTarget.innerHTML = `
     <div class="d-flex justify-content-around">
       <button type="button" class="btn color-btn btn-lg rounded-btn-nav"  data-video-start="${row.dataset.videoStart}" data-video-end="${row.dataset.videoEnd}" data-action="click->video#playSolo">Start Over</button>
@@ -115,6 +116,10 @@ export default class extends Controller {
       <button type="button" class="btn btn-dark btn-lg btn-block rounded-btn-nav"  data-video-start="${row.dataset.videoStart}" data-video-end="${row.dataset.videoEnd}" data-action="click->video#loop">Loop</button>
     </div>
     `
+
+    // Make form action go to the right solo and show riff table
+    this.riffTableTarget.setAttribute("action", `/solos/${row.dataset.soloId}`);
+    this.riffTableTarget.classList.remove('d-none');
 
     this.#checkLoopActive(row);
   }
