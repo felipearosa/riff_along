@@ -27,6 +27,7 @@ class VideosController < ApplicationController
       @video = @user.videos.where(youtube_key: @params).last
       @video_id = @video.id
       @video_title = @video.title
+
       # @video_id = @video.id
       # Needs refactoring
       if @user.videos.where(youtube_key: @params).last
@@ -36,9 +37,12 @@ class VideosController < ApplicationController
       end
     else
       @video = current_user&.videos&.find_by(youtube_key: @params)
-      redirect_to user_video_path(user_id: current_user.id, id: @params) if @video.present?
+      if @video.present?
+        redirect_to user_video_path(user_id: current_user.id, id: @params)
+      else
+        @video = Video.new(youtube_key: @params)
+      end
     end
-    @video = Video.new(youtube_key: @params)
     authorize @video
   end
 
