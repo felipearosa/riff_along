@@ -142,11 +142,12 @@ export default class extends Controller {
     element.classList.toggle("unmastered");
   }
 
-  riffEdit(e){
-    let s = e.target.selectionStart;
-    e.target.value = e.target.value.substr(0, s) + e.target.value.substr(s + 1);
-    e.target.selectionEnd = s;
-  }
+  // function for input with data-action keypress->video#riffEdit || this will act as the insert key
+  // riffEdit(e){
+  //   let s = e.target.selectionStart;
+  //   e.target.value = e.target.value.substr(0, s) + e.target.value.substr(s + 1);
+  //   e.target.selectionEnd = s;
+  // }
 
 
   #checkMastered(element){

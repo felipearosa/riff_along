@@ -1,0 +1,17 @@
+<div class="form col-sm-12 col-md-6">
+  <div class="container w-100">
+    <div class="row justify-content-center border-list">
+      <div class="col-12">
+        <h1 class="font-font">Save to existing List</h1>
+        <%= simple_form_for [catalog], data: { video_target: 'soloform' } do |f| %>
+          <%= f.association :list, collection: List.where(user_id: current_user),   include_blank: "Choose Your List..." %>
+          <%= f.hidden_field :video_id, value: @params %>
+          <% if @video %>
+            <%= f.hidden_field :video, value: @video_id %>
+          <% end %>
+          <%= f.submit 'Save Song', class:"btn rounded-btn-nav color-btn my-4" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
