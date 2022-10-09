@@ -126,11 +126,13 @@ export default class extends Controller {
     if (!row.dataset.soloId){
       this.riffTableTarget.classList.add('d-none');
       this.riffTableTarget.setAttribute("action", ``);
+      this.updateTabBtnTarget.classList.add('d-none');
       this.riffDescriptionTarget.innerHTML = `You need to save your solo to add a tab to it(save it to a list or click "update solos).`;
     } else if (row.dataset.soloRiff === '') {
       this.riffInputTarget.value = ''
       this.riffDescriptionTarget.innerHTML = `Type your tab below`;
       this.riffTableTarget.classList.remove('d-none');
+      this.updateTabBtnTarget.classList.add('d-none');
     } else {
       this.riffTableTarget.classList.add('d-none');
       this.updateTabBtnTarget.classList.remove('d-none');
@@ -176,9 +178,16 @@ export default class extends Controller {
     this.updateTabBtnTarget.classList.add('d-none');
   }
 
+  // Click to update the tab that exists
   updateTab(){
+    const soloId = this.riffTableTarget.getAttribute("action").split('/')[2];
     this.riffTableTarget.classList.add('d-none');
     this.riffTextTarget.innerHTML = this.riffInputTarget.value.replace(/\n/g, '<br>');
+    this.rowTargets.forEach((row) => {
+      if(row.dataset.soloId === soloId){
+        row.dataset.soloRiff = this.riffInputTarget.value = this.riffTextTarget.innerHTML.replace(/<br>/g, "\n");
+      };
+    });
   }
 
 
