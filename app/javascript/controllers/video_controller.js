@@ -3,7 +3,7 @@ import YouTubePlayer from 'youtube-player';
 
 // Connects to data-controller="video"
 export default class extends Controller {
-  static targets = [ "start", "stop", "list", "row", "control", "message", "soloform", 'master', 'img', 'riffTable' ]
+  static targets = [ "start", "stop", "list", "row", "control", "message", "soloform", 'master', 'img', 'riffTable', 'riffText' ]
   static values = {
     slug: String
   }
@@ -98,6 +98,7 @@ export default class extends Controller {
 
   setRowActive(event){
     this.controlTarget.innerHTML = ``;
+    this.riffTextTarget.innerHTML = ``;
 
     const element = event.target;
     this.rowTargets.forEach((row) => {
@@ -120,6 +121,8 @@ export default class extends Controller {
     // Make form action go to the right solo and show riff table
     this.riffTableTarget.setAttribute("action", `/solos/${row.dataset.soloId}`);
     this.riffTableTarget.classList.remove('d-none');
+
+    this.riffTextTarget.innerHTML = `${row.dataset.soloRiff}`;
 
     this.#checkLoopActive(row);
   }

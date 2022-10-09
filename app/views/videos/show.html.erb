@@ -39,7 +39,7 @@
                   <div class="d-none" data-video-target="img" data-value="<%= image_path("mastered_icon.png") %>"></div>
                   <% if @solos %>
                     <% @solos.each do |solo| %>
-                    <tr data-action="click->video#setRowActive" data-video-target="row" data-video-start="<%= solo.starting_time %>" data-video-end="<%= solo.ending_time %>" data-solo-id="<%= solo.id %>">
+                    <tr data-action="click->video#setRowActive" data-video-target="row" data-video-start="<%= solo.starting_time %>" data-video-end="<%= solo.ending_time %>" data-solo-id="<%= solo.id %>" data-solo-riff ="<%= simple_format(solo.riff)  %>">
                       <td class="container-td master-border text-center">
                         <div>
                           <%= link_to solo_path(solo),  data: {turbo_method: :patch}, class: 'someClass' do%>
@@ -77,28 +77,9 @@
 
   <div class="row pt-3 riff-table">
     <div class="col-12 d-flex riff-table">
-      <div>
-        <p>
-          e|<br>B|<br>G|<br>D|<br>A|<br>E|
-        </p>
+      <div id="riff-text" data-video-target="riffText">
+       <%# <%= simple_format(@solo.riff) %>
       </div>
-      <div id="test">
-        <p>
-        ----3/4---------------------------------------<br>
-        ---------10/11--------------------------------<br>
-        ----------------------------------------------<br>
-        ----------------------------------------------<br>
-        ----------------------------------------------<br>
-        ----------------------------------------------<br>
-        </p>
-      </div>
-
-      <div>
-        <p>
-          |e<br>|B<br>|G<br>|D<br>|A<br>|E
-        </p>
-      </div>
-
     </div>
         <%= simple_form_for [@solo], data: { video_target: 'riffTable' } ,method: :patch, html: { class: 'd-none' } do |f| %>
               <%= f.input :riff, as: :text, input_html: { rows: 6 }  %>
