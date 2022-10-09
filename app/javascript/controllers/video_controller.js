@@ -3,7 +3,7 @@ import YouTubePlayer from 'youtube-player';
 
 // Connects to data-controller="video"
 export default class extends Controller {
-  static targets = [ "start", "stop", "list", "row", "control", "message", "soloform", 'master', 'img', 'riffTable', 'riffText', 'riffDescription', 'riffInput', 'updateTabBtn' ]
+  static targets = [ "start", "stop", "list", "row", "control", "message", "soloform", 'master', 'img', 'riffTable', 'riffText', 'riffDescription', 'riffInput', 'updateTabBtn', 'riffUpdate' ]
   static values = {
     slug: String
   }
@@ -174,8 +174,13 @@ export default class extends Controller {
     this.riffTextTarget.innerHTML = ''
     this.riffTableTarget.classList.remove('d-none');
     this.updateTabBtnTarget.classList.add('d-none');
-
   }
+
+  updateTab(){
+    this.riffTableTarget.classList.add('d-none');
+    this.riffTextTarget.innerHTML = this.riffInputTarget.value.replace(/\n/g, '<br>');
+  }
+
 
 
   #checkMastered(element){

@@ -7,7 +7,6 @@ class SolosController < ApplicationController
 
   def update
     @solo = Solo.find(params[:id])
-    raise
     if params[:solo]
       riff = params[:solo][:riff]
       @solo.riff = riff
