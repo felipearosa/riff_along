@@ -3,7 +3,7 @@ import YouTubePlayer from 'youtube-player';
 
 // Connects to data-controller="video"
 export default class extends Controller {
-  static targets = [ "start", "stop", "list", "row", "control", "message", "soloform", 'master', 'img', 'riffTable', 'riffText' ]
+  static targets = [ "start", "stop", "list", "row", "control", "message", "soloform", 'master', 'img', 'riffTable', 'riffText', 'riffDescription', 'riffInput', 'updateTabBtn' ]
   static values = {
     slug: String
   }
@@ -58,6 +58,7 @@ export default class extends Controller {
       row.dataset.videoTarget = "row";
       row.dataset.videoStart = this.exactStart;
       row.dataset.videoEnd = this.exactEnd;
+      row.dataset.soloRiff = '';
       if (this.startTime === 'NaN:NaN') {
         this.startTime = "Unloaded"
       }
@@ -120,9 +121,20 @@ export default class extends Controller {
 
     // Make form action go to the right solo and show riff table
     this.riffTableTarget.setAttribute("action", `/solos/${row.dataset.soloId}`);
-    this.riffTableTarget.classList.remove('d-none');
+    this.riffTextTarget.innerHTML = `${row.dataset.soloRiff.replace(/\n/g, '<br>')}`;
 
-    this.riffTextTarget.innerHTML = `${row.dataset.soloRiff}`;
+    if (!row.dataset.soloId){
+      this.riffTableTarget.classList.add('d-none');
+      this.riffTableTarget.setAttribute("action", ``);
+      this.riffDescriptionTarget.innerHTML = `You need to save your solo to add a tab to it(save it to a list or click "update solos).`;
+    } else if (row.dataset.soloRiff === '') {
+      this.riffInputTarget.value = ''
+      this.riffDescriptionTarget.innerHTML = `Type your tab below`;
+      this.riffTableTarget.classList.remove('d-none');
+    } else {
+      this.riffTableTarget.classList.add('d-none');
+      this.updateTabBtnTarget.classList.remove('d-none');
+    }
 
     this.#checkLoopActive(row);
   }
@@ -156,6 +168,14 @@ export default class extends Controller {
   //   e.target.value = e.target.value.substr(0, s) + e.target.value.substr(s + 1);
   //   e.target.selectionEnd = s;
   // }
+
+  showUpdateTab(){
+    this.riffInputTarget.value = this.riffTextTarget.innerHTML.replace(/<br>/g, "\n");
+    this.riffTextTarget.innerHTML = ''
+    this.riffTableTarget.classList.remove('d-none');
+    this.updateTabBtnTarget.classList.add('d-none');
+
+  }
 
 
   #checkMastered(element){

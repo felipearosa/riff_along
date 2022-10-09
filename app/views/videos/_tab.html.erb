@@ -1,0 +1,21 @@
+<div class="form col-12">
+  <div class="container w-100">
+    <div class="row justify-content-center form-signup">
+      <div class="col-12">
+        <h2>Tab</h2>
+        <div class="riff-description" data-video-target="riffDescription">Choose a solo and add a tab to it!</div>
+        <div class="row pt-3 riff-table">
+          <div class="col-12 riff-table">
+            <div id="riff-text" data-video-target="riffText">
+            </div>
+            <div class="btn rounded-btn-nav color-btn mt-3 d-block d-none" data-video-target="updateTabBtn" data-action="click->video#showUpdateTab">Edit Tab</div>
+          </div>
+          <%= simple_form_for [solo], data: { video_target: 'riffTable' }, method: :patch, html: { class: 'd-none' } do |f| %>
+                <%= f.input :riff, as: :text, input_html: { rows: 6,  data: { video_target: 'riffInput' } }  %>
+                <%= f.submit 'Add tab', class:"btn rounded-btn-nav color-btn" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
