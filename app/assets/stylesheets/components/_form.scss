@@ -1,7 +1,7 @@
 .form-signup {
   overflow: hidden;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 50px;
   width: 100%;
   padding: 30px;
@@ -14,15 +14,33 @@
 }
 
 .color-btn {
-  background-color:#580090;
+  background-color: #580090;
   color: #FFFFFF;
-    &:hover {
-      background-color: #7106b3;
-      color: white;
-      border: #580090;
-    }
-    &:focus {
-      background-color: #580090;
-      color: white;
-    }
+
+  &:hover {
+    background-color: #7106b3;
+    color: white;
+    border: #580090;
+  }
+
+  &:focus {
+    background-color: #580090;
+    color: white;
+  }
+}
+
+
+
+// Smallest device
+@media (min-width: 100px) and (max-width: 575px) {
+
+  .form-signup {
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    margin-left: -64px;
+    width: 180%;
+    padding: 30px;
+  }
+
 }
