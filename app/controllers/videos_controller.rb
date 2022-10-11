@@ -32,7 +32,7 @@ class VideosController < ApplicationController
       # Needs refactoring
       if @user.videos.where(youtube_key: @params).last
         unless @user.videos.where(youtube_key: @params).last.solos.empty?
-          @solos = @user.videos.where(youtube_key: @params).last.solos
+          @solos = @user.videos.where(youtube_key: @params).last.solos.order(:starting_time)
         end
       end
     else
