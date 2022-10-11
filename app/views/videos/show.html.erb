@@ -9,168 +9,86 @@
 
   <div class="row">
   <%# parte do video %>
-  <div class="col-sm-12 col-md-6">
-    <div id="video-container">
-      <%# DIV PARA O IFRAME DO YOUTUBE %>
-        <div id="player"></div>
-        <div class="d-flex justify-content-around btns-start-stop">
-          <div class="btn btn-dark btn-lg btn-block disabled mt-3 rounded-btn-nav focus-focus" data-video-target="start" data-action="click->video#markStart">Start Recording</div>
-          <div type="button" class="btn btn-dark btn-lg btn-block disabled mt-3 ms-3 rounded-btn-nav" data-video-target="stop" data-action="click->video#markStop">Stop Recording</div>
-        </div>
-        <div data-video-target="message"></div>
-      </div>
-    </div>
-    <%# parte da tabela %>
     <div class="col-sm-12 col-md-6">
-      <div class="d-flex flex-column w-100">
-        <div class="w-100 height-test overflow-auto">
-          <h3 class="font-color text-center m-3">Your Loops</h3>
-            <div class="mb-3" id="control" data-video-target="control"></div>
-            <div class="font-color">
-              <table class="w-100 table table-striped">
-                <thead>
-                  <tr>
-                    <th class="text-center">Mastered</th>
-                    <th class="text-center">Time</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody id="solo-list" data-video-target="list">
-                <div class="d-none" data-video-target="img" data-value="<%= image_path("mastered_icon.png") %>"></div>
-                <% if @solos %>
-                  <% @solos.each do |solo| %>
-                  <tr data-action="click->video#setRowActive" data-video-target="row" data-video-start="<%= solo.starting_time %>" data-video-end="<%= solo.ending_time %>" data-solo-id="<%= solo.id %>">
-                    <td class="container-td master-border text-center">
-                      <div>
-                        <%= link_to solo_path(solo),  data: {turbo_method: :patch} do%>
-                          <%= image_tag("mastered_icon.png", class: solo.done ? "mastered" : "unmastered" , data: { video_target: 'master', action: 'click->video#masterToggle' }) %>
-                        <% end %>
-                      </div>
-                    </td>
-                    <td class="container-td text-center"><div><%= "%02d:%02d" % [solo.starting_time.to_i/60%60, solo.starting_time.to_i%60] %> - <%= "%02d:%02d" % [solo.ending_time.to_i/60%60, solo.ending_time.to_i%60] %></div></td>
-
-                      <% if @video && current_user == @user %>
-                        <td class="time-border"> <div><%= link_to "❌", solo_path(solo),  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%> </div></td>
-                      <% else %>
-                        <td class="time-border"></td>
-                      <% end %>
-                  </tr>
-                  <% end %>
-                <% end %>
-                </tbody>
-              </table>
-
-            </div>
+      <div id="video-container">
+        <%# DIV PARA O IFRAME DO YOUTUBE %>
+          <div id="player"></div>
+          <div class="d-flex justify-content-around btns-start-stop">
+            <div class="btn btn-dark btn-lg btn-block disabled mt-3 rounded-btn-nav focus-focus" data-video-target="start" data-action="click->video#markStart">Start Recording</div>
+            <div type="button" class="btn btn-dark btn-lg btn-block disabled mt-3 ms-3 rounded-btn-nav" data-video-target="stop" data-action="click->video#markStop">Stop Recording</div>
+          </div>
+          <div data-video-target="message"></div>
         </div>
-        <div class="update-btn">
-        <% if @video && current_user == @user && @user.present? %>
-          <%= simple_form_for [@video], data: { video_target: 'soloform' }, url: "/videos/#{@video_id}", method: :patch do |f| %>
-                <%= f.hidden_field :video_id, value: @params %>
-                <%= f.submit 'Update Solos', class:"btn rounded-btn-nav color-btn" %>
+      </div>
+      <%# parte da tabela %>
+      <div class="col-sm-12 col-md-6">
+        <div class="d-flex flex-column w-100">
+          <div class="w-100 height-test overflow-auto">
+            <h3 class="font-color text-center m-3">Your Loops</h3>
+              <div class="mb-3" id="control" data-video-target="control"></div>
+              <div class="font-color">
+                <table class="w-100 table table-striped">
+                  <thead>
+                    <tr>
+                      <th class="text-center">Mastered</th>
+                      <th class="text-center">Time</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="solo-list" data-video-target="list">
+                  <div class="d-none" data-video-target="img" data-value="<%= image_path("mastered_icon.png") %>"></div>
+                  <% if @solos %>
+                    <% @solos.each do |solo| %>
+                    <tr data-action="click->video#setRowActive" data-video-target="row" data-video-start="<%= solo.starting_time %>" data-video-end="<%= solo.ending_time %>" data-solo-id="<%= solo.id %>" data-solo-riff ="<%= solo.riff  %>">
+                      <td class="container-td master-border text-center">
+                        <div>
+                          <%= link_to solo_path(solo),  data: {turbo_method: :patch}, class: 'someClass' do%>
+                            <%= image_tag("mastered_icon.png", class: solo.done ? "mastered" : "unmastered" , data: { video_target: 'master', action: 'click->video#masterToggle' }) %>
+                          <% end %>
+                        </div>
+                      </td>
+                      <td class="container-td text-center"><div><%= "%02d:%02d" % [solo.starting_time.to_i/60%60, solo.starting_time.to_i%60] %> - <%= "%02d:%02d" % [solo.ending_time.to_i/60%60, solo.ending_time.to_i%60] %></div></td>
+
+                        <% if @video && current_user == @user %>
+                          <td class="time-border"> <div><%= link_to "❌", solo_path(solo),  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%> </div></td>
+                        <% else %>
+                          <td class="time-border"></td>
+                        <% end %>
+                    </tr>
+                    <% end %>
+                  <% end %>
+                  </tbody>
+                </table>
+
+              </div>
+          </div>
+          <div class="update-btn">
+          <% if @video && current_user == @user && @user.present? %>
+            <%= simple_form_for [@video], data: { video_target: 'soloform' }, url: "/videos/#{@video_id}", method: :patch do |f| %>
+                  <%= f.hidden_field :video_id, value: @params %>
+                  <%= f.submit 'Update Solos', class:"btn rounded-btn-nav color-btn" %>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
     </div>
-      </div>
   </div>
 
-<div class="row">
-  <% unless current_user %>
-    <% if !@user  %>
-      <div class="form col-sm-12 col-md-6">
-          <div class="container">
-            <div class="row form-signup">
-              <div class="col-12 text-center">
-                <h4 class="font-font">To save your riff you must login or sign up <strong> before</strong> recording your loops:</h4>
-                <p class="card-product-p mt-3"><%= link_to "Sign Up", new_user_registration_path,   data: {turbo_method: :alert, turbo_confirm: "If you Sign Up now, you will lose all your riffs created so far. Would you like to continue?"}, class:"btn color-btn rounded-btn-nav mx-3" %>
-                or
-                <%= link_to "Login", new_user_session_path, data: {turbo_method: :alert, turbo_confirm: "If you Login now, you will lose all your riffs created so far. Would you like to continue?"}, class: "btn btn-dark rounded-btn-nav mx-3" %>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-  <% else %>
-    <% if @video %>
-      <% if current_user == @user || !@user %>
-        <div class="form col-sm-12 col-md-6">
-        <div class="container w-100">
-          <div class="row justify-content-center form-signup">
-            <div class="col-12">
-              <h1 class="font-font">Save to new List</h1>
-              <%= simple_form_for [@list], data: { video_target: 'soloform'} do |f| %>
-                <%= f.input :name, label: "List Name" %>
-                <%= f.input :description, label: "List Description" %>
-                <%= f.hidden_field :video_id, value: @params %>
-                <% if @video %>
-                <%= f.hidden_field :video, value: @video_id %>
-                <% end %>
-                <%= f.submit class:"btn color-btn rounded-btn-nav my-4"  %>
-              <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <% if !current_user.lists.empty? %>
-          <div class="form col-sm-12 col-md-6">
-            <div class="container w-100">
-              <div class="row justify-content-center border-list">
-                <div class="col-12">
-                  <h1 class="font-font">Save to existing List</h1>
-                  <%= simple_form_for [@catalog], data: { video_target: 'soloform' } do |f| %>
-                    <%= f.association :list, collection: List.where(user_id: current_user),   include_blank: "Choose Your List..." %>
-                    <%= f.hidden_field :video_id, value: @params %>
-                    <% if @video %>
-                      <%= f.hidden_field :video, value: @video_id %>
-                    <% end %>
-                    <%= f.submit 'Save Song', class:"btn rounded-btn-nav color-btn my-4" %>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
+  <%# Table and form for adding tabs %>
+  <%= render 'tab', solo: @solo %>
+
+
+
+  <div class="row">
+    <% unless current_user %>
+        <%= render 'loginbox' %>
     <% else %>
-      <div class="form col-sm-12 col-md-6">
-        <div class="container w-100">
-          <div class="row justify-content-center form-signup">
-            <div class="col-12">
-              <h1 class="font-font">Save to new List</h1>
-              <%= simple_form_for [@list], data: { video_target: 'soloform'} do |f| %>
-                <%= f.input :name, label: "List Name" %>
-                <%= f.input :description, label: "List Description" %>
-                <%= f.hidden_field :video_id, value: @params %>
-                <% if @video %>
-                <%= f.hidden_field :video, value: @video_id %>
-                <% end %>
-                <%= f.submit class:"btn color-btn rounded-btn-nav my-4"  %>
-              <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
+      <% if current_user == @user || !@user %>
+        <%= render 'newlist', list: @list %>
         <% if !current_user.lists.empty? %>
-          <div class="form col-sm-12 col-md-6">
-            <div class="container w-100">
-              <div class="row justify-content-center border-list">
-                <div class="col-12">
-                  <h1 class="font-font">Save to existing List</h1>
-                  <%= simple_form_for [@catalog], data: { video_target: 'soloform' } do |f| %>
-                    <%= f.association :list, collection: List.where(user_id: current_user),   include_blank: "Choose Your List..." %>
-                    <%= f.hidden_field :video_id, value: @params %>
-                    <% if @video %>
-                      <%= f.hidden_field :video, value: @video_id %>
-                    <% end %>
-                    <%= f.submit 'Save Song', class:"btn rounded-btn-nav color-btn my-4" %>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
+          <%= render 'existinglist', catalog: @catalog %>
         <% end %>
+      <% end %>
     <% end %>
-  <% end %>
   </div>
 </div>

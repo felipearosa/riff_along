@@ -7,10 +7,15 @@ class SolosController < ApplicationController
 
   def update
     @solo = Solo.find(params[:id])
-    if @solo.done
-      @solo.done = false
+    if params[:solo]
+      riff = params[:solo][:riff]
+      @solo.riff = riff
     else
-      @solo.done = true
+      if @solo.done
+        @solo.done = false
+      else
+        @solo.done = true
+      end
     end
 
     authorize @solo
