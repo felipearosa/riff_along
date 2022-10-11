@@ -3,7 +3,7 @@ import YouTubePlayer from 'youtube-player';
 
 // Connects to data-controller="video"
 export default class extends Controller {
-  static targets = [ "start", "stop", "list", "row", "control", "message", "soloform", 'master', 'img', 'riffTable', 'riffText', 'riffDescription', 'riffInput', 'updateTabBtn', 'riffUpdate' ]
+  static targets = [ "start", "stop", "list", "row", "control", "message", "soloform", 'master', 'img', 'riffTable', 'riffText', 'riffDescription', 'riffInput', 'updateTabBtn', 'riffUpdate', 'riffContainer' ]
   static values = {
     slug: String
   }
@@ -122,6 +122,7 @@ export default class extends Controller {
     // Make form action go to the right solo and show riff table
     this.riffTableTarget.setAttribute("action", `/solos/${row.dataset.soloId}`);
     this.riffTextTarget.innerHTML = `${row.dataset.soloRiff.replace(/\n/g, '<br>')}`;
+    this.#fitTab();
 
     if (!row.dataset.soloId){
       this.riffTableTarget.classList.add('d-none');
@@ -171,6 +172,7 @@ export default class extends Controller {
   //   e.target.selectionEnd = s;
   // }
 
+  // click to show the table that edits tab
   showUpdateTab(){
     this.riffInputTarget.value = this.riffTextTarget.innerHTML.replace(/<br>/g, "\n");
     this.riffTextTarget.innerHTML = ''
@@ -188,8 +190,31 @@ export default class extends Controller {
         row.dataset.soloRiff = this.riffInputTarget.value = this.riffTextTarget.innerHTML.replace(/<br>/g, "\n");
       };
     });
+
+    this.updateTabBtnTarget.classList.remove('d-none');
+
+    this.#fitTab();
   }
 
+  // Set width of page to fit all tabs
+  #fitTab(){
+    const lines = this.riffTextTarget.innerHTML.split("<br>");
+    //9.6 per character and 84 of margin/padding
+    //check if i can do minimum width inside class or something
+    const lineLength = (Math.max(...lines.map(el => el.length)) * 9.6) + 84;
+    this.#resizeCorrectly(lineLength);
+    window.addEventListener('resize', () => {
+      this.#resizeCorrectly(lineLength);
+    });
+  }
+
+  #resizeCorrectly(lineLength){
+    if (window.innerWidth > lineLength) {
+      this.riffContainerTarget.style.width = `auto`;
+    } else {
+      this.riffContainerTarget.style.width = `${lineLength}px`;
+    }
+  }
 
 
   #checkMastered(element){
