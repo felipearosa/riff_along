@@ -8,7 +8,9 @@
           <div class="col-12 riff-table">
             <div id="riff-text" data-video-target="riffText">
             </div>
-            <div class="btn rounded-btn-nav color-btn mt-3 d-block d-none" data-video-target="updateTabBtn" data-action="click->video#showUpdateTab">Edit Tab</div>
+            <% if current_user == @user %>
+              <div class="btn rounded-btn-nav color-btn mt-3 d-block d-none" data-video-target="updateTabBtn" data-action="click->video#showUpdateTab">Edit Tab</div>
+            <% end %>
           </div>
           <%= simple_form_for [solo], data: { video_target: 'riffTable' }, method: :patch, html: { class: 'd-none' } do |f| %>
                 <%= f.input :riff, as: :text, input_html: { rows: 6,  data: { video_target: 'riffInput' } }  %>
