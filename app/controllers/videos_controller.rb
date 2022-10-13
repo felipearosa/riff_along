@@ -1,4 +1,4 @@
-require 'open-uri'
+require 'rest-client'
 require 'json'
 
 class VideosController < ApplicationController
@@ -80,7 +80,7 @@ class VideosController < ApplicationController
   private
 
   def loop_videos_search(url)
-    videos_serialized = URI.open(url, 'User-Agent' => 'ruby').read
+    videos_serialized = RestClient.get url
     videos_info = JSON.parse(videos_serialized)["items"]
 
     videos_info.each do |video|
