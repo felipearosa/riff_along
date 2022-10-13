@@ -80,7 +80,7 @@ class VideosController < ApplicationController
   private
 
   def loop_videos_search(url)
-    videos_serialized = URI.open(url, 'User-Agent' => 'ruby').read
+    videos_serialized = URI.open(url, 'User-Agent' => 'Ruby').read
     videos_info = JSON.parse(videos_serialized)["items"]
 
     videos_info.each do |video|
