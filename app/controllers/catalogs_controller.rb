@@ -15,7 +15,7 @@ class CatalogsController < ApplicationController
     unless @video
       video_id = CGI.escape(params[:catalog][:video_id])
       url = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=#{video_id}&key=#{ENV.fetch('YOUTUBE_API')}"
-      videos_serialized = URI.open(url).read
+      videos_serialized = URI.open(url,'User-Agent' => 'ruby').read
       videos_info = JSON.parse(videos_serialized)["items"][0]
       video_title = videos_info["snippet"]["title"]
       video_image_url = videos_info["snippet"]["thumbnails"]["medium"]["url"]
