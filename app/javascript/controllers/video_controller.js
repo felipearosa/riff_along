@@ -76,8 +76,9 @@ export default class extends Controller {
         form.insertAdjacentHTML('beforeend', `<input value="${this.exactStart}, ${this.exactEnd}, unmastered" autocomplete="off" type="hidden" name="solos[time${this.soloNum}]" id="list_video_id"></input>`)
       })
     });
-
-    this.saveNewSolosTarget.classList.remove('d-none');
+    if (document.querySelector('.update-btn').querySelector('form')) {
+      this.saveNewSolosTarget.classList.remove('d-none');
+    }
     this.recording = false;
     this.stopTarget.classList.add('disabled');
     this.startTarget.classList.remove('disabled');
