@@ -1,3 +1,5 @@
+require 'rest-client'
+
 class ListsController < ApplicationController
   before_action :set_list, only: %i[show edit update destroy]
   skip_before_action :authenticate_user!, only: %i[show]
@@ -16,7 +18,11 @@ class ListsController < ApplicationController
       unless @video
         video_id = CGI.escape(params[:list][:video_id])
         url = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=#{video_id}&key=#{ENV.fetch('YOUTUBE_API')}"
+<<<<<<< HEAD
         videos_serialized = URI.open(url,'User-Agent' => 'Ruby').read
+=======
+        videos_serialized = RestClient.get url
+>>>>>>> a4e8b46e6f8bdff2b37cb668140bf46945bce875
         videos_info = JSON.parse(videos_serialized)["items"][0]
         video_title = videos_info["snippet"]["title"]
         video_image_url = videos_info["snippet"]["thumbnails"]["medium"]["url"]
